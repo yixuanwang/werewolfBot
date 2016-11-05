@@ -26,7 +26,7 @@ const app = express()
 const events = require('events');
 
 var startBot = new events.EventEmitter(); 
-startBot.on('createGameRoom', createGameRoom);
+startBot.on('createGameRoom', createGameRoom(sender));
 
 app.set('port', (process.env.PORT || 5000))
 
