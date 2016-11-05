@@ -59,6 +59,10 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
+            if(text == "creategame") {
+                createGameRoom(sender);
+                continue;
+            }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             //if(text == "creategame") {
                 //let startBot = new events.EventEmitter(); 
@@ -111,7 +115,7 @@ function createGameRoom (sender){
     roomIDTaken.push(roomID);
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
-    sendTextMessage(sender, roomID);
+    sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
