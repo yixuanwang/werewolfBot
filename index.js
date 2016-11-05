@@ -70,10 +70,10 @@ app.post('/webhook/', function (req, res) {
 
 
 
-            if (text == "checkarray"){
-                var roomIDTaken = require('./data').roomIDTaken;
-                console.info(roomIDTaken);
-            }
+            //if (text == "checkarray"){
+            //      var roomIDTaken = require('./data').roomIDTaken;
+            //    console.info(roomIDTaken);
+            //}
 
             
 
