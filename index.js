@@ -109,8 +109,8 @@ function createGameRoom (sender){
             }
         }
     }while(IDTaken == true);
-    roomIDTaken.push(roomID);
-    players.push(sender);
+    roomIDTaken.push2roomIdTaken(roomID);
+    players.push2players(sender);
     // test player.push
     let testMessage = {text: "you are: " + players[0]}; 
     sendTextMessage(sender, testMessage);
