@@ -87,7 +87,7 @@ app.post('/webhook/', function (req, res) {
 
 
             if (text.substring(0,5) == "join "){
-                joinMessage=joinGameRoom(sender, text);
+                var joinMessage=joinGameRoom(sender, text);
                 sendTextMessage(sender, joinMessage);
                 continue;
             }
