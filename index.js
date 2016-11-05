@@ -67,5 +67,5 @@ function sendTextMessage(sender, text) {
 }
 
 //Kevin's section
-var functions = require('./button');
-functions.buttons();
+//var functions = require('./button');
+//functions.buttons();
