@@ -70,10 +70,10 @@ app.post('/webhook/', function (req, res) {
 
 
 
-            //if (text == "checkarray"){
-            //      var roomIDTaken = require('./data').roomIDTaken;
-            //    console.info(roomIDTaken);
-            //}
+            if (text == "checkarray"){
+                var roomIDTaken = require('./data').roomIDTaken;
+                console.info(roomIDTaken);
+            }
 
             
 
@@ -118,7 +118,8 @@ function sendTextMessage(sender, text) {
 
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
-    var GameRoom = new GameRoom();
+    var Game = new GameRoom();
+    Game.constructor()
 
 
     //let IDTaken = false;
@@ -137,8 +138,8 @@ function createGameRoom (sender){
     // test player.push
     //let testMessage = {text: "you are: " + players[0]}; 
     //sendTextMessage(sender, testMessage);
-    GameRoom.addPlayer(sender);
-    let startMessage = { text: "You have created a game, you're room ID is: "+ GameRoom.roomID };
+    Game.addPlayer(sender);
+    let startMessage = { text: "You have created a game, you're room ID is: "+ Game.roomID };
     sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
