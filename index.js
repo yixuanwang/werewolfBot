@@ -67,6 +67,10 @@ app.post('/webhook/', function (req, res) {
                 sendNightOptions(sender);
                 continue;
             }
+            if (text == "checkarray"){
+                var roomIDTaken = require('./data').roomIDTaken;
+                console.info(roomIDTaken);
+            }
             
 
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))
