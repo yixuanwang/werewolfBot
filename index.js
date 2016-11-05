@@ -112,6 +112,7 @@ function createGameRoom (sender){
     roomIDTaken.push(roomID);
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
+    sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
