@@ -24,6 +24,14 @@ const request = require('request')
 const app = express()
 const events = require('events');
 
+function gameRoom(id, position) {
+    this.id = id;
+    this.players = [];
+    this.playernum = players.length;
+    this.position = position;
+}
+var takenID = [];
+var gameRoomArray = [];
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -237,12 +245,4 @@ function sendNightOptions(sender) {
     }
 }*/
 
-function gameRoom(id, position) {
-    this.id = id;
-    this.players = [];
-    this.playernum = players.length;
-    this.position = position;
-}
-var takenID = [];
-var testroom = new gameRoom(id);
-var gameRoomArray = [];
+
