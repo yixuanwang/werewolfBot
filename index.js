@@ -62,11 +62,11 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-            if(text == "creategame") {
-                let startBot = new events.EventEmitter(); 
-                startBot.on('createGameRoom', createGameRoom(sender));
-                startBot.emit('createGameRoom');
-            }
+            //if(text == "creategame") {
+                //let startBot = new events.EventEmitter(); 
+                //startBot.on('createGameRoom', createGameRoom(sender));
+                //startBot.emit('createGameRoom');
+            //}
             //$.getScript("button.js", buttons(sender) {
 
              //alert("Script loaded but not necessarily executed.");
