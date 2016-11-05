@@ -151,12 +151,12 @@ function sendGenericMessage(sender) {
                     "subtitle": "Element #1 of an hscroll",
                     //"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
                     "buttons": [{
-                        "type": "web_url",
+                        "type": "Kill",
                         "url": "https://www.messenger.com",
                         "title": "Kill someone"
                     }, {
                         "type": "postback",
-                        "title": "Postback",
+                        "title": "Nothing",
                         "payload": "Do nothing",
                     }],
                 }, 
