@@ -68,12 +68,8 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
-            if (event.postback) {
-                let text = JSON.stringify(event.postback)
-                sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-                continue
-            }
             
+
 
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))
             //if(text == "creategame") {
@@ -81,8 +77,13 @@ app.post('/webhook/', function (req, res) {
                 //startBot.on('createGameRoom', createGameRoom(sender));
                 //startBot.emit('createGameRoom');
             //}
-            //buttons(sender);
+            
         }
+        if (event.postback) {
+                let text = JSON.stringify(event.postback)
+                sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+                continue
+            }
     }
     res.sendStatus(200)
 })
@@ -162,8 +163,8 @@ function sendNightOptions(sender) {
                         "title": "Kill someone"
                     }, {
                         "type": "postback",
-                        "title": "You did nothing this turn",
-                        "payload": "Do nothing",
+                        "payload": "You did nothing this turn",
+                        "title": "Do nothing",
                     }],
                 }, 
 
