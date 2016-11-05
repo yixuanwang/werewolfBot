@@ -1,4 +1,4 @@
-import test from './index';
+
 function buttons(recipientId) {
   var messageData = {
     "recipient": {
@@ -55,4 +55,3 @@ function buttons(recipientId) {
     }
   }
 }
-module.exports = buttons;

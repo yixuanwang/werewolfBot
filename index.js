@@ -67,6 +67,8 @@ app.post('/webhook/', function (req, res) {
                 //startBot.on('createGameRoom', createGameRoom(sender));
                 //startBot.emit('createGameRoom');
             //}
+
+            buttons(sender);
             //$.getScript("button.js", buttons(sender) {
 
              //alert("Script loaded but not necessarily executed.");
@@ -129,4 +131,61 @@ function createGameRoom (sender){
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+function buttons(recipientId) {
+  var messageData = {
+    "recipient": {
+    "id": "RECIPIENT_ID"
+  },
+  "message": {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Swipe left/right for more options.",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Button 1",
+                "payload": "button1"
+              },
+              {
+                "type": "postback",
+                "title": "Button 2",
+                "payload": "button2"
+              },
+              {
+                "type": "postback",
+                "title": "Button 3",
+                "payload": "button3"
+              }
+            ]
+          },
+          {
+            "title": "Swipe left/right for more options.",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "Button 4",
+                "payload": "button4"
+              },
+              {
+                "type": "postback",
+                "title": "Button 5",
+                "payload": "button5"
+              },
+              {
+                "type": "postback",
+                "title": "Button 6",
+                "payload": "button6"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
 }
