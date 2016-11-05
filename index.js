@@ -27,7 +27,7 @@ const events = require('events');
 function gameRoom(id, position) {
     this.id = id;
     this.players = [];
-    this.playernum = players.length;
+    this.playernum = this.players.length;
     this.position = position;
 }
 var takenID = [];
