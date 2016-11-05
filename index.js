@@ -232,8 +232,8 @@ function joinGameRoom(sender,text){
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom ++;
             var alreadyJoined=0;
-            for (var j=0;g<gameRoomArray.players.length;j++){
-                if gameRoomArray[i].players[j] == sender{
+            for (var j=0;g<gameRoomArray[i].players.length;j++){
+                if (gameRoomArray[i].players[j] == sender){
                     alreadyJoined++;
                 }
             }
