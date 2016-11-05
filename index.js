@@ -87,8 +87,7 @@ app.post('/webhook/', function (req, res) {
 
 
             if (text.substring(0,5) == "join "){
-                var joinMessage=joinGameRoom(sender, text);
-                sendTextMessage(sender, joinMessage);
+                joinGameRoom(sender, text);
                 continue;
             }
 
@@ -229,7 +228,8 @@ function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
     var validRoom = false;
     sendTextMessage(sender, "pre-loop");
-    for (let i = 0; i<gameRoomArray.length;i++){
+    var i;
+    for (i = 0; i<gameRoomArray.length;i++){
         sendTextMessage(sender, "loop");
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom = true;
@@ -246,8 +246,6 @@ function joinGameRoom(sender,text){
         var joinMessage = { text: "room ID invalid"};
         sendTextMessage(sender, joinMessage);
     }
-    return joinMessage;
-
 }
 
 
