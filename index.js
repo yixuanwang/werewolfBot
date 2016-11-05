@@ -67,6 +67,12 @@ app.post('/webhook/', function (req, res) {
                 sendNightOptions(sender);
                 continue;
             }
+
+            if (event.postback) {
+                let text = JSON.stringify(event.postback)
+                sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
+                continue
+            }
             
 
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))
