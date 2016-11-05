@@ -239,9 +239,7 @@ function joinGameRoom(sender,text){
     }
     sendTextMessage(sender, validRoom);
     if (validRoom==1){
-                sendTextMessage(sender, "2nd if");
-
-        var joinMessage = { text: "you have successfully joined the room: "+ text};
+        var joinMessage ="you have successfully joined the room: ";
         sendTextMessage(sender, joinMessage);
     }
     else{
