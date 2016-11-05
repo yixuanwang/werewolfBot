@@ -231,14 +231,13 @@ function joinGameRoom(sender,text){
     sendTextMessage(sender, "pre-loop");
     for (let i = 0; i<gameRoomArray.length;i++){
         sendTextMessage(sender, "loop");
-        sendTextMessage(sender, gameRoomArray[i].id);
-        sendTextMessage(sender, text.substring(5,11));
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom = true;
             gameRoomArray[i].players.push(sender);
             sendTextMessage(sender, "if");
         }
     }
+    sendTextMessage(sender, "post-loop");
     if (validRoom){
         var joinMessage = { text: "you have successfully joined the room: "+ text};
         sendTextMessage(sender, joinMessage);
