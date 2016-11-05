@@ -1,4 +1,4 @@
-import './data.js';
+import data from './data.js'
 
 function createGameRoom (sender){
 	let IDTaken = false;
