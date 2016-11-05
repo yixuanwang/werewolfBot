@@ -86,13 +86,7 @@ app.post('/webhook/', function (req, res) {
             
 
 
-            sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))
-            //if(text == "creategame") {
-                //let startBot = new events.EventEmitter(); 
-                //startBot.on('createGameRoom', createGameRoom(sender));
-                //startBot.emit('createGameRoom');
-            //}
-            
+            sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
         if (event.postback) {
                 let text = JSON.stringify(event.postback)
@@ -219,31 +213,3 @@ function sendNightOptions(sender) {
         }
     })
 }
-
-
-/*class GameRoom{
-
-    constructor(){
-        var roomIDTaken = require('./data').roomIDTaken;
-        var IDTaken=false;
-        do{
-            IDTaken = false;
-            var ID = Math.floor(Math.random()*90000) + 10000;
-            for (let i = 0; i<roomIDTaken.length; i++){
-                if (roomID == roomIDTaken[i]){
-                    IDTaken = true;
-                }
-            }
-        }while(IDTaken == true);
-        this.roomID = ID;
-        roomIDTaken.push2roomIdTaken(roomID);
-            this.players = [];
-            this.roles = [];
-        }
-
-    addPlayer(id){
-        this.players.push(id);
-    }
-}*/
-
-
