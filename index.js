@@ -125,6 +125,7 @@ function sendTextMessage(sender, text) {
 }
 
 function checkID(room){
+    var i;
     for(i=0; i<takenID.length; i++){
         if (room == takenID[i]){
             room ="a" + Math.floor(Math.random()*90000) + 10000;
