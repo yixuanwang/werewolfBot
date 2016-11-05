@@ -207,7 +207,7 @@ class GameRoom{
         let IDTaken = false;
         var roomIDTaken = require('./data').roomIDTaken;
         do{
-            this.roomID = Math.floor(Math.random()*90000) + 10000;
+            var this.roomID = Math.floor(Math.random()*90000) + 10000;
             for (let i = 0; i<roomIDTaken.length; i++){
                 if (roomID == roomIDTaken[i]){
                     IDTaken = true;
@@ -215,8 +215,8 @@ class GameRoom{
             }
         }while(IDTaken == true);
         roomIDTaken.push2roomIdTaken(roomID);
-            this.players = [];
-            this.roles = [];
+            var this.players = [];
+            var this.roles = [];
         }
 
     addPlayer(id){
