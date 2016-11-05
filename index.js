@@ -69,6 +69,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             if(text == "creategame") {
                 createGameRoom(sender);
+                // This is a test
                 sendTextMessage(sender, gameRoomArray.length);
                 continue;
             }
