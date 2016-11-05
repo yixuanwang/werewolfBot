@@ -88,6 +88,7 @@ app.post('/webhook/', function (req, res) {
 
             if (text.substring(0,5) == "join "){
                 joinGameRoom(sender, text);
+                continue;
             }
 
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
