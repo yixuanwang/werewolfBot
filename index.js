@@ -87,7 +87,8 @@ app.post('/webhook/', function (req, res) {
 
 
             if (text.substring(0,5) == "join "){
-                joinGameRoom(sender, text);
+                joinMessage=joinGameRoom(sender, text);
+                sendTextMessage(sender, joinMessage);
                 continue;
             }
 
@@ -238,7 +239,7 @@ function joinGameRoom(sender,text){
     else{
         var joinMessage = { text: "room ID invalid"};
     }
-    sendTextMessage(sender, joinMessage);
+    return joinMessage;
 
 }
 
