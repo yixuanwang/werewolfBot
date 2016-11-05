@@ -101,7 +101,7 @@ function sendTextMessage(sender, text) {
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
     let IDTaken = false;
-    var roomIDTaken = require('./data');
+    var roomIDTaken = require('./data').roomIDTaken;
     do{
         var roomID = Math.random()*(100000-10000)+10000;
         for (i = 0; i<roomIDTaken.length;i++){
