@@ -45,8 +45,7 @@ app.post('/webhook/', function (req, res) {
 })
 
 const token = "EAAFjZC8es9ZAUBACkjbZCkCvObT8B9gABy2AiBBPVZAryGVp8RKn3oRNALP8bTW0FMYWFWqiLbzccJRqtMUdaUL9hSvpKloutzlj6j8vX7ZAfHyRnohWJr3bYa3gC0nsg63NfK85oEK75oJMkqoZAOFYRAf3O95fZBdXXliJg3PEQZDZD"
-var functions = require('./button').buttons;
-functions.buttons();
+
 function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
@@ -64,4 +63,9 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
+
 }
+
+//Kevin's section
+var functions = require('./button');
+functions.buttons();
