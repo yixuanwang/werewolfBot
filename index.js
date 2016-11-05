@@ -103,7 +103,7 @@ function sendTextMessage(sender, text) {
 }
 
 function createGameRoom (sender){
-    i=true
+    var i=true
     while(i){
         sendTextMessage(sender, "creating");
         i=false;
