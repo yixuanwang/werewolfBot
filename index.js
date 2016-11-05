@@ -96,7 +96,7 @@ app.post('/webhook/', function (req, res) {
         if (event.postback) {
                 
                 let text = JSON.stringify(event.postback)                     
-                console.log("Postback received: " + JSON.stringify(event.postback));
+                sendTextMessage(sender,text.substring(12, text.length -2 ));
                 continue;
             }
     }
@@ -227,26 +227,21 @@ function sendNightOptions(sender) {
 function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
     var validRoom = 0;
-    sendTextMessage(sender, "pre-loop");
     var i;
     for (i = 0; i<gameRoomArray.length;i++){
-        sendTextMessage(sender, "loop");
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom ++;
             gameRoomArray[i].players.push(sender);
-            sendTextMessage(sender, "if");
         }
     }
     sendTextMessage(sender, validRoom);
     if (validRoom==1){
-        var joinMessage = "you have successfully joined the room: "+ text;
+        var joinMessage ="you have successfully joined the room: ";
         sendTextMessage(sender, joinMessage);
     }
     else{
-        var joinMessage = { text: "room ID invalid"};
+        var joinMessage = "room ID invalid";
         sendTextMessage(sender, joinMessage);
     }
 }
-
-
 
