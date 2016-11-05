@@ -111,6 +111,8 @@ function createGameRoom (sender){
     }while(IDTaken == true);
     roomIDTaken.push(roomID);
     player.push(sender);
+    // test player.push
+    sendTextMessage(sender, player[0]);
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
     sendTextMessage(sender, startMessage);
