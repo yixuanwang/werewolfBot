@@ -103,7 +103,11 @@ function sendTextMessage(sender, text) {
 }
 
 function createGameRoom (sender){
-    sendTextMessage(sender, "creating");
+    i=true
+    while(i){
+        sendTextMessage(sender, "creating");
+        i=false;
+    }
     let IDTaken = false;
     var roomIDTaken = require('./data').roomIDTaken;
     var players = require('./data').players;
