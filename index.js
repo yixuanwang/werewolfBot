@@ -116,11 +116,20 @@ function sendTextMessage(sender, text) {
     })
 }
 
+function checkID(room){
+    for(i=0; i<takenID.length; i++){
+        if (room == takenID[i]){
+            room ="a" + Math.floor(Math.random()*90000) + 10000;
+            checkID(room);
+        }
+    }
+    return room;
+}
+
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
-    var Game = new GameRoom();
-    Game.constructor()
-
+    var roomID = "a"+Math.floor(Math.random()*90000) + 10000;
+    let test = checkID(roomID);
 
     //let IDTaken = false;
     //var roomIDTaken = require('./data').roomIDTaken;
@@ -232,4 +241,3 @@ function gameRoom(id) {
     this.playernum = players.length;
 }
 var takenID = []
-var testroom = new room(id);
