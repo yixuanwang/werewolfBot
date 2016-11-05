@@ -1,5 +1,6 @@
 import data from './data.js'
 
+/*
 function createGameRoom (sender){
 	let IDTaken = false;
 	var roomIDTaken = require("./data");
@@ -30,6 +31,7 @@ function createGameRoom (sender){
         }
     })
 }
+*/
 
 
 function joinGameRoom(sender,text){
