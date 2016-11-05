@@ -1,5 +1,3 @@
-
-
 import './data.js';
 
 function createGameRoom (sender){
@@ -47,4 +45,3 @@ function joinGameRoom(sender,text){
 	}
 
 }
-module.exports = createGameRoom;
