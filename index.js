@@ -227,7 +227,7 @@ function sendNightOptions(sender) {
 
 function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
-    let validRoom = false;
+    var validRoom = false;
     sendTextMessage(sender, "pre-loop");
     for (let i = 0; i<gameRoomArray.length;i++){
         sendTextMessage(sender, "loop");
