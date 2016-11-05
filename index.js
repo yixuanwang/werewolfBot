@@ -57,11 +57,11 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-            $.getScript("button.js", buttons(sender) {
+            //$.getScript("button.js", buttons(sender) {
 
-             alert("Script loaded but not necessarily executed.");
+             //alert("Script loaded but not necessarily executed.");
 
-             });
+             //});
         }
     }
     res.sendStatus(200)
