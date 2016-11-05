@@ -37,13 +37,17 @@ function createGameRoom (sender){
 function joinGameRoom(sender,text){
 	var roomIDTaken = require('data');
 	let validRoom = false;
-	for (i = 0; i<roomIDTaken.length;i++){
-		if(roomIDTaken == text.substring(6,11)){
+	for (let i = 0; i<gameRoomArray.length;i++){
+		if(gameRoomArray[i].id == text.substring(5,11)){
 			validRoom = true;
+			gameRoomArray[i].player.push(sender);
 		}
 	}
 	if (validRoom){
-		let joinMessage = { text: "you have successfully joined the room"};
+		let joinMessage = { text: "you have successfully joined the room: "+ text};
+	}
+	else{
+		let joinMessage = { text: "room ID invalid"};
 	}
 
 }
