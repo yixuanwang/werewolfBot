@@ -8,12 +8,10 @@ function loadScript(url, callback)
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
-
     // Then bind the event to the callback function.
     // There are several events for cross browser compatibility.
     script.onreadystatechange = callback;
     script.onload = callback;
-
     // Fire the loading
     head.appendChild(script);
 }
@@ -63,15 +61,10 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             //if(text == "creategame") {
- +                //let startBot = new events.EventEmitter(); 
- +                //startBot.on('createGameRoom', createGameRoom(sender));
- +                //startBot.emit('createGameRoom');
- +            //}
-              //$.getScript("button.js", buttons(sender) {
-  
-               //alert("Script loaded but not necessarily executed.");
-
-            //buttons(sender);
+                //let startBot = new events.EventEmitter(); 
+                //startBot.on('createGameRoom', createGameRoom(sender));
+                //startBot.emit('createGameRoom');
+            //}
             //$.getScript("button.js", buttons(sender) {
 
              //alert("Script loaded but not necessarily executed.");
@@ -134,61 +127,4 @@ function createGameRoom (sender){
             console.log('Error: ', response.body.error)
         }
     })
-}
-
-function buttons(recipientId) {
-  var messageData = {
-    "recipient": {
-    "id": "RECIPIENT_ID"
-  },
-  "message": {
-    "attachment": {
-      "type": "template",
-      "payload": {
-        "template_type": "generic",
-        "elements": [
-          {
-            "title": "Swipe left/right for more options.",
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Button 1",
-                "payload": "button1"
-              },
-              {
-                "type": "postback",
-                "title": "Button 2",
-                "payload": "button2"
-              },
-              {
-                "type": "postback",
-                "title": "Button 3",
-                "payload": "button3"
-              }
-            ]
-          },
-          {
-            "title": "Swipe left/right for more options.",
-            "buttons": [
-              {
-                "type": "postback",
-                "title": "Button 4",
-                "payload": "button4"
-              },
-              {
-                "type": "postback",
-                "title": "Button 5",
-                "payload": "button5"
-              },
-              {
-                "type": "postback",
-                "title": "Button 6",
-                "payload": "button6"
-              }
-            ]
-          }
-        ]
-      }
-    }
-  }
 }
