@@ -140,6 +140,7 @@ function createGameRoom (sender){
     var roomID = "a"+Math.floor(Math.random()*90000) + 10000;
     let finalid = checkID(roomID);
     let test = new gameRoom(finalid, gameRoomArray.length);
+    test.players.push(sender);
     gameRoomArray.push(test);
     
 
