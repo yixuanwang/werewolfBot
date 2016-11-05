@@ -241,3 +241,7 @@ function gameRoom(id) {
     this.playernum = players.length;
 }
 var takenID = []
+<<<<<<< HEAD
+=======
+var testroom = new gameRoom(id);
+>>>>>>> b7bbfb32afdaf0685a915ffc8bf21270d5795b30
