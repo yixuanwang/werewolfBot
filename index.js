@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             if(text == "creategame") {
                 createGameRoom(sender);
-                break;
+                continue;
             }
             if (text == "image"){
                 sendNightOptions(sender);
