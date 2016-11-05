@@ -6,7 +6,7 @@ function createGameRoom (sender){
 	let IDTaken = false;
 	var roomIDTaken = require("./data");
 	do{
-		let roomID = Math.random()*(100000-10000)+10000;
+		var roomID = Math.random()*(100000-10000)+10000;
 		for (i = 0; i<roomIDTaken.length;i++){
 			if (roomID == roomIDTaken[i]){
 				IDTaken = true;
