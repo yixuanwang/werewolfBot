@@ -69,11 +69,7 @@ app.post('/webhook/', function (req, res) {
                 //startBot.on('createGameRoom', createGameRoom(sender));
                 //startBot.emit('createGameRoom');
             //}
-            //$.getScript("button.js", buttons(sender) {
-
-             //alert("Script loaded but not necessarily executed.");
-
-             //});
+            //buttons(sender);
         }
     }
     res.sendStatus(200)
@@ -132,3 +128,31 @@ function createGameRoom (sender){
         }
     })
 }
+
+// function buttons(recipientId) {
+//  {
+//   "recipient":{
+//     "id":"USER_ID"
+//   },
+//   "message":{
+//     "attachment":{
+//       "type":"template",
+//       "payload":{
+//         "template_type":"button",
+//         "text":"What do you want to do next?",
+//         "buttons":[
+//           {
+//             "type":"web_url",
+//             "url":"https://petersapparel.parseapp.com",
+//             "title":"Show Website"
+//           },
+//           {
+//             "type":"postback",
+//             "title":"Start Chatting",
+//             "payload":"USER_DEFINED_PAYLOAD"
+//           }
+//         ]
+//       }
+//     }
+//   }
+// }
