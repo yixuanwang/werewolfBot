@@ -5,8 +5,6 @@ const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
 
-var functions = require("functions.js");
-
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -38,17 +36,9 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
         let event = req.body.entry[0].messaging[i]
         let sender = event.sender.id
-        if (event.message.text == "create game"){
-            functions.createGameRoom(sender);
-        }
-        //check if start game
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-
-            //Kevin's section
-            //var functions = require('./button');
-            //functions.buttons(sender);
         }
     }
     res.sendStatus(200)
@@ -74,4 +64,3 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
