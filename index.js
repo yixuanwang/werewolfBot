@@ -88,7 +88,7 @@ app.post('/webhook/', function (req, res) {
 
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
-        if (event.postback) {
+        else if (event.postback) {
                 let text = JSON.stringify(event.postback)
                 sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
                 continue
@@ -187,9 +187,10 @@ function sendNightOptions(sender) {
                         "type": "postback",
                         "payload": "You killed someone this turn",
                         "title": "Kill someone"
+                        "webview_height_ratio": "compact"
                     }, {
                         "type": "postback",
-                        //"payload": "You did nothing this turn",
+                        "payload": "You did nothing this turn",
                         "title": "Do nothing",
                     }],
                 }, 
