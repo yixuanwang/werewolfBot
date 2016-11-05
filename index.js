@@ -38,9 +38,10 @@ app.post('/webhook/', function (req, res) {
     for (let i = 0; i < messaging_events.length; i++) {
         let event = req.body.entry[0].messaging[i]
         let sender = event.sender.id
-        if (event.message.substring(0,11) == "create game"){
+        if (event.message.text == "create game"){
             functions.createGameRoom(sender);
         }
+        //check if start game
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
