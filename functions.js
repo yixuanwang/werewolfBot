@@ -35,7 +35,7 @@ function createGameRoom (sender){
 
 
 function joinGameRoom(sender,text){
-	var roomIDTaken = require("./data");
+	var roomIDTaken = require('data');
 	let validRoom = false;
 	for (i = 0; i<roomIDTaken.length;i++){
 		if(roomIDTaken == text.substring(6,11)){

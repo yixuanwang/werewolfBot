@@ -1,4 +1,5 @@
 'use strict'
+import data from './data.js'
 /*
 function loadScript(url, callback)
 {
@@ -100,7 +101,7 @@ function sendTextMessage(sender, text) {
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
     let IDTaken = false;
-    var roomIDTaken = require("./data");
+    var roomIDTaken = require('data');
     do{
         var roomID = Math.random()*(100000-10000)+10000;
         for (i = 0; i<roomIDTaken.length;i++){
@@ -112,7 +113,7 @@ function createGameRoom (sender){
     roomIDTaken.push(roomID);
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
-    sendTextMessage(sender, startMessage);
+    sendTextMessage(sender, roomID);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
