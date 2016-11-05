@@ -232,6 +232,7 @@ function joinGameRoom(sender,text){
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom ++;
             gameRoomArray[i].players.push(sender);
+            sendTextMessage(sender, gameRoomArray[i].players.length);
         }
     }
     if (validRoom==1){
@@ -242,5 +243,6 @@ function joinGameRoom(sender,text){
         var joinMessage = "room ID invalid";
         sendTextMessage(sender, joinMessage);
     }
+
 }
 
