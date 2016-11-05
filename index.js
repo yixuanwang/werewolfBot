@@ -38,7 +38,7 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200)+sender)
+            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
     }
     res.sendStatus(200)
@@ -63,13 +63,7 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
-<<<<<<< HEAD
 }
-=======
-
-}
-
 //Kevin's section
 //var functions = require('./button');
 //functions.buttons();
->>>>>>> cc06dacec80115c6f698b05f03cdc72673b1dc8a
