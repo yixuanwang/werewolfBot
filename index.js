@@ -64,7 +64,7 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
             if (text == "image"){
-                sendGenericMessage(sender);
+                sendNightOptions(sender);
                 continue;
             }
             
@@ -140,23 +140,23 @@ function createGameRoom (sender){
     })
 }
 
-function sendGenericMessage(sender) {
+function sendNightOptions(sender) {
     let messageData = {
         "attachment": {
             "type": "template",
             "payload": {
                 "template_type": "generic",
                 "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
+                    "title": "Night Time",
+                    "subtitle": "What action do you want to do?",
                     //"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
                     "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
+                        "type": "postback",
+                        "payload": "You killed someone this turn",
                         "title": "Kill someone"
                     }, {
                         "type": "postback",
-                        "title": "Postback",
+                        "title": "You did nothing this turn",
                         "payload": "Do nothing",
                     }],
                 }, 
