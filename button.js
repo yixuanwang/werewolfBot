@@ -1,5 +1,5 @@
-import test from '../index';
-function sendGenericMessage(recipientId) {
+import test from './index';
+function buttons(recipientId) {
   var messageData = {
     "recipient": {
     "id": "RECIPIENT_ID"
@@ -55,3 +55,4 @@ function sendGenericMessage(recipientId) {
     }
   }
 }
+module.exports = buttons;
