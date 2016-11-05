@@ -68,6 +68,13 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
+
+
+            if (text == "checkarray"){
+                var roomIDTaken = require('./data').roomIDTaken;
+                console.info(roomIDTaken);
+            }
+
             
 
 
@@ -111,24 +118,27 @@ function sendTextMessage(sender, text) {
 
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
-    let IDTaken = false;
-    var roomIDTaken = require('./data').roomIDTaken;
-    var players = require('./data').players;
-    do{
-        var roomID = Math.floor(Math.random()*90000) + 10000;
-        for (let i = 0; i<roomIDTaken.length; i++){
-            if (roomID == roomIDTaken[i]){
-                IDTaken = true;
-            }
-        }
-    }while(IDTaken == true);
-    roomIDTaken.push(roomID);
-    players.push(sender);
+    var GameRoom = new GameRoom();
+
+
+    //let IDTaken = false;
+    //var roomIDTaken = require('./data').roomIDTaken;
+    //var players = require('./data').players;
+    //do{
+    //    var roomID = Math.floor(Math.random()*90000) + 10000;
+    //    for (let i = 0; i<roomIDTaken.length; i++){
+    //        if (roomID == roomIDTaken[i]){
+    //            IDTaken = true;
+    //        }
+    //    }
+    //}while(IDTaken == true);
+    //roomIDTaken.push(roomID);
+    //players.push(sender);
     // test player.push
-    let testMessage = {text: "you are: " + players[0]}; 
-    sendTextMessage(sender, testMessage);
-    
-    let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
+    //let testMessage = {text: "you are: " + players[0]}; 
+    //sendTextMessage(sender, testMessage);
+    GameRoom.addPlayer(sender);
+    let startMessage = { text: "You have created a game, you're room ID is: "+ GameRoom.roomID };
     sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -156,14 +166,14 @@ function sendNightOptions(sender) {
                 "elements": [{
                     "title": "Night Time",
                     "subtitle": "What action do you want to do?",
-                    //"image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    
                     "buttons": [{
                         "type": "postback",
                         "payload": "You killed someone this turn",
                         "title": "Kill someone"
                     }, {
                         "type": "postback",
-                        "payload": "You did nothing this turn",
+                        //"payload": "You did nothing this turn",
                         "title": "Do nothing",
                     }],
                 }, 
@@ -187,4 +197,38 @@ function sendNightOptions(sender) {
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+
+class GameRoom{
+
+    constructor(){
+        let IDTaken = false;
+        var roomIDTaken = require('./data').roomIDTaken;
+        do{
+            this.roomID = Math.floor(Math.random()*90000) + 10000;
+            for (let i = 0; i<roomIDTaken.length; i++){
+                if (roomID == roomIDTaken[i]){
+                    IDTaken = true;
+                }
+            }
+        }while(IDTaken == true);
+        roomIDTaken.push2roomIdTaken(roomID);
+            this.players = [];
+            this.roles = [];
+        }
+
+    addPlayer(id){
+        this.players.push(id);
+    }
+
+    //getPlayer(id){
+    //    var player = _.find(this.players, {id});
+        // if user not found create a new user
+    //    if (!player) {
+    //        this.addPlayer(id);
+    //        return this.getPlayer(id);
+    //    }
+    //return player;
+    //}
 }
