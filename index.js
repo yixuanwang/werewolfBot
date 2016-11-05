@@ -232,4 +232,4 @@ function gameRoom(id) {
     this.playernum = players.length;
 }
 var takenID = []
-var testroom = new room(id);
+var testroom = new gameRoom(id);
