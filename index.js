@@ -229,10 +229,11 @@ function joinGameRoom(sender,text){
     let validRoom = false;
     sendTextMessage(sender, "pre-loop");
     for (let i = 0; i<gameRoomArray.length;i++){
+        sendTextMessage(sender, "loop");
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom = true;
             gameRoomArray[i].players.push(sender);
-            sendTextMessage(sender, "loop");
+            sendTextMessage(sender, "if");
         }
     }
     if (validRoom){
