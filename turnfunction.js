@@ -1,3 +1,4 @@
+import
 var players = []
 var roles = []
 
@@ -5,7 +6,7 @@ Array.prototype.randomElement = function () {
     return this[Math.floor(Math.random() * this.length)]
 }
 
-function turn(sender, admin, turntext){
+function turn(sender, admin, turntext, numberofplayers){
 	if (sender == admin){
 		for (i=0; i<players.length;i++){
 			let messageData = { text:turntext}
@@ -25,6 +26,7 @@ function turn(sender, admin, turntext){
 		        }
 		    })
 		};
+		generateRole();
 	} else {
 		let messageData = { text:"You are not the admin of the room." }
 	    request({
@@ -41,5 +43,4 @@ function turn(sender, admin, turntext){
 
 function generateRole(myArray){
 	var rand = myArray.randomElement();
-	return rand
 }

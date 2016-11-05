@@ -63,9 +63,4 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
-
 }
-
-//Kevin's section
-var functions = require('./button');
-functions.buttons();
