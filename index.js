@@ -61,7 +61,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             if(text == "creategame") {
                 createGameRoom(sender);
-                continue;
+                break;
             }
             if (text == "image"){
                 sendNightOptions(sender);
@@ -103,11 +103,8 @@ function sendTextMessage(sender, text) {
 }
 
 function createGameRoom (sender){
-    var i=true
-    while(i){
-        sendTextMessage(sender, "creating");
-        i=false;
-    }
+    sendTextMessage(sender, "creating");
+
     let IDTaken = false;
     var roomIDTaken = require('./data').roomIDTaken;
     var players = require('./data').players;
