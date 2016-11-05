@@ -75,3 +75,7 @@ var gameRemainText = players.length + " players remain"
 
 //During the day time, if someone votes to lynch, the others will get the message
 var gameLynchVoteText = voter.id + "has voted to lynch" + target.id
+
+//Display the Lynch Result
+var gameLynchResultText = "The villagers have cast their votes, amid doubts and suspicions. " + finaltarget.id + " is dead. RIP."
+ 
