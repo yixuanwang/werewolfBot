@@ -90,9 +90,6 @@ app.post('/webhook/', function (req, res) {
                 joinGameRoom(sender, text);
             }
 
-            
-
-
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
         if (event.postback) {
@@ -196,7 +193,7 @@ function sendNightOptions(sender) {
                         "type": "postback",
                         "payload": "You killed someone this turn",
                         "title": "Kill someone",
-                        "webview_height_ratio": "compact"
+                        
                     }, {
                         "type": "postback",
                         "payload": "You did nothing this turn",
