@@ -122,7 +122,7 @@ function checkID(room){
     var i;
     for(i=0; i<takenID.length; i++){
         if (room == takenID[i]){
-            room ="a" + Math.floor(Math.random()*90000) + 10000;
+            room ="a" + (Math.floor(Math.random()*90000) + 10000);
             checkID(room);
         }
     }
@@ -131,7 +131,7 @@ function checkID(room){
 
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
-    var roomID = "a"+Math.floor(Math.random()*90000) + 10000;
+    var roomID = "a"+(Math.floor(Math.random()*90000) + 10000);
     let finalid = checkID(roomID);
     let test = new gameRoom(finalid, gameRoomArray.length);
     test.players.push(sender);
