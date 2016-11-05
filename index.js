@@ -69,7 +69,7 @@ app.post('/webhook/', function (req, res) {
             }
             
 
-            sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200) + sender)
+            sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))
             //if(text == "creategame") {
                 //let startBot = new events.EventEmitter(); 
                 //startBot.on('createGameRoom', createGameRoom(sender));
