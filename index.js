@@ -190,7 +190,7 @@ function sendNightOptions(sender) {
                     "buttons": [{
                         "type": "postback",
                         "payload": "You killed someone this turn",
-                        "title": "Kill someone"
+                        "title": "Kill someone",
                         "webview_height_ratio": "compact"
                     }, {
                         "type": "postback",
