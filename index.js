@@ -224,7 +224,7 @@ function sendNightOptions(sender) {
     })
 }
 
-/*function joinGameRoom(sender,text){
+function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
     var validRoom = 0;
     sendTextMessage(sender, "pre-loop");
@@ -246,32 +246,5 @@ function sendNightOptions(sender) {
         var joinMessage = { text: "room ID invalid"};
         sendTextMessage(sender, joinMessage);
     }
-}*/
-
-function joinGameRoom(sender,text){
-    //var roomIDTaken = require('data');
-    var validRoom = 0;
-    sendTextMessage(sender, "pre-loop");
-    var i=0;
-    while(validRoom==0){
-        if(gameRoomArray[i].id == text.substring(5,11)){
-            validRoom ++;
-            gameRoomArray[i].players.push(sender);
-            break;
-        }
-        i++;
-        if (i>=gameRoomArray.length){
-            break;
-        }
-    }
-    if (validRoom==1){
-        var joinMessage = { text: "you have successfully joined the room: "+ text};
-        sendTextMessage(sender, joinMessage);
-    }
-    else{
-        var joinMessage = { text: "room ID invalid"};
-        sendTextMessage(sender, joinMessage);
-    }
 }
-
 
