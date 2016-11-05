@@ -95,8 +95,8 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
         if (event.postback) {
-                let text = JSON.stringify(event.postback)
-                console.log("Postback received: " + text);
+                
+                console.log("Postback received: " + JSON.stringify(event.postback));
                 //sendTextMessage(sender ,text.substring(10,text.length-2));
                 continue;
             }
