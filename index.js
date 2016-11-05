@@ -85,6 +85,11 @@ app.post('/webhook/', function (req, res) {
                 console.info(roomIDTaken);
             }
 
+
+            if (text.substring(0,5) == "join "){
+                joinGameRoom(sender, text);
+            }
+
             
 
 
@@ -218,6 +223,24 @@ function sendNightOptions(sender) {
             console.log('Error: ', response.body.error)
         }
     })
+}
+
+function joinGameRoom(sender,text){
+    //var roomIDTaken = require('data');
+    let validRoom = false;
+    for (let i = 0; i<gameRoomArray.length;i++){
+        if(gameRoomArray[i].id == text.substring(5,11)){
+            validRoom = true;
+            gameRoomArray[i].player.push(sender);
+        }
+    }
+    if (validRoom){
+        let joinMessage = { text: "you have successfully joined the room: "+ text};
+    }
+    else{
+        let joinMessage = { text: "room ID invalid"};
+    }
+
 }
 
 
