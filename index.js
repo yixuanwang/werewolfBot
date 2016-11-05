@@ -205,9 +205,9 @@ class GameRoom{
 
     constructor(){
         var roomIDTaken = require('./data').roomIDTaken;
-        IDTaken=false;
+        var IDTaken=false;
         do{
-            let IDTaken = false;
+            IDTaken = false;
             var ID = Math.floor(Math.random()*90000) + 10000;
             for (let i = 0; i<roomIDTaken.length; i++){
                 if (roomID == roomIDTaken[i]){
