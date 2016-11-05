@@ -204,32 +204,23 @@ function sendNightOptions(sender) {
 class GameRoom{
 
     constructor(){
-        let IDTaken = false;
         var roomIDTaken = require('./data').roomIDTaken;
         do{
-            var this.roomID = Math.floor(Math.random()*90000) + 10000;
+            let IDTaken = false;
+            var ID = Math.floor(Math.random()*90000) + 10000;
             for (let i = 0; i<roomIDTaken.length; i++){
                 if (roomID == roomIDTaken[i]){
                     IDTaken = true;
                 }
             }
         }while(IDTaken == true);
+        this.roomID = ID;
         roomIDTaken.push2roomIdTaken(roomID);
-            var this.players = [];
-            var this.roles = [];
+            this.players = [];
+            this.roles = [];
         }
 
     addPlayer(id){
         this.players.push(id);
     }
-
-    //getPlayer(id){
-    //    var player = _.find(this.players, {id});
-        // if user not found create a new user
-    //    if (!player) {
-    //        this.addPlayer(id);
-    //        return this.getPlayer(id);
-    //    }
-    //return player;
-    //}
 }
