@@ -46,8 +46,8 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
 
             //Kevin's section
-            var functions = require('./button');
-            functions.buttons(sender);
+            //var functions = require('./button');
+            //functions.buttons(sender);
         }
     }
     res.sendStatus(200)
