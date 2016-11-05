@@ -23,6 +23,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
 const app = express()
+const events = require('events');
+
+var startBot = new events.EventEmitter(); 
+startBot.on('createGameRoom', createGameRoom);
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -58,6 +62,9 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+            if(text == "creategame") {
+                startBot.emit('createGameRoom');
+            }
             //$.getScript("button.js", buttons(sender) {
 
              //alert("Script loaded but not necessarily executed.");
@@ -90,6 +97,7 @@ function sendTextMessage(sender, text) {
 }
 
 function createGameRoom (sender){
+    sendTextMessage(sender, "creating");
     let IDTaken = false;
     var roomIDTaken = require("./data");
     do{
