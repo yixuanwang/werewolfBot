@@ -201,7 +201,7 @@ function sendNightOptions(sender) {
 }
 
 
-class GameRoom{
+/*class GameRoom{
 
     constructor(){
         var roomIDTaken = require('./data').roomIDTaken;
@@ -224,4 +224,12 @@ class GameRoom{
     addPlayer(id){
         this.players.push(id);
     }
+}*/
+
+function gameRoom(id) {
+    this.id = id;
+    this.players = [];
+    this.playernum = players.length;
 }
+var takenID = []
+var testroom = new room(id);
