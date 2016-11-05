@@ -68,7 +68,7 @@ app.post('/webhook/', function (req, res) {
                 //startBot.emit('createGameRoom');
             //}
 
-            buttons(sender);
+            //buttons(sender);
             //$.getScript("button.js", buttons(sender) {
 
              //alert("Script loaded but not necessarily executed.");
