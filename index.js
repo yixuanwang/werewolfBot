@@ -100,6 +100,7 @@ function createGameRoom (sender){
     sendTextMessage(sender, "creating");
     let IDTaken = false;
     var roomIDTaken = require('./data').roomIDTaken;
+    var player = require('./data').player;
     do{
         var roomID = Math.random()*(100000-10000)+10000;
         for (let i = 0; i<roomIDTaken.length; i++){
@@ -109,6 +110,7 @@ function createGameRoom (sender){
         }
     }while(IDTaken == true);
     roomIDTaken.push(roomID);
+    player.push(sender);
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ roomID };
     sendTextMessage(sender, startMessage);
