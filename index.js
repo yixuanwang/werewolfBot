@@ -231,7 +231,7 @@ function joinGameRoom(sender,text){
     for (let i = 0; i<gameRoomArray.length;i++){
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom = true;
-            gameRoomArray[i].player.push(sender);
+            gameRoomArray[i].players.push(sender);
         }
     }
     if (validRoom){
