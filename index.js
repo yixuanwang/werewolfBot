@@ -233,11 +233,12 @@ function joinGameRoom(sender,text){
         }
     }
     if (validRoom){
-        let joinMessage = { text: "you have successfully joined the room: "+ text};
+        var joinMessage = { text: "you have successfully joined the room: "+ text};
     }
     else{
-        let joinMessage = { text: "room ID invalid"};
+        var joinMessage = { text: "room ID invalid"};
     }
+    sendTextMessage(sender, joinMessage);
 
 }
 
