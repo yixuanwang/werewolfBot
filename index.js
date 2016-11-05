@@ -129,7 +129,10 @@ function checkID(room){
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
     var roomID = "a"+Math.floor(Math.random()*90000) + 10000;
-    let test = checkID(roomID);
+    let finalid = checkID(roomID);
+    let test = new gameRoom(finalid, gameRoomArray.length);
+    gameRoomArray.push(test);
+    
 
     //let IDTaken = false;
     //var roomIDTaken = require('./data').roomIDTaken;
@@ -147,8 +150,7 @@ function createGameRoom (sender){
     // test player.push
     //let testMessage = {text: "you are: " + players[0]}; 
     //sendTextMessage(sender, testMessage);
-    Game.addPlayer(sender);
-    let startMessage = { text: "You have created a game, you're room ID is: "+ Game.roomID };
+    let startMessage = { text: "You have created a game, you're room ID is: "+ finalid };
     sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -235,10 +237,12 @@ function sendNightOptions(sender) {
     }
 }*/
 
-function gameRoom(id) {
+function gameRoom(id, position) {
     this.id = id;
     this.players = [];
     this.playernum = players.length;
+    this.position = position;
 }
-var takenID = []
+var takenID = [];
 var testroom = new gameRoom(id);
+var gameRoomArray = [];
