@@ -226,19 +226,19 @@ function sendNightOptions(sender) {
 
 function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
-    var validRoom = false;
+    var validRoom = 0;
     sendTextMessage(sender, "pre-loop");
     var i;
     for (i = 0; i<gameRoomArray.length;i++){
         sendTextMessage(sender, "loop");
         if(gameRoomArray[i].id == text.substring(5,11)){
-            validRoom = true;
+            validRoom ++;
             gameRoomArray[i].players.push(sender);
             sendTextMessage(sender, "if");
         }
     }
     sendTextMessage(sender, "post-loop");
-    if (validRoom){
+    if (validRoom==1){
         var joinMessage = { text: "you have successfully joined the room: "+ text};
         sendTextMessage(sender, joinMessage);
     }
