@@ -231,7 +231,15 @@ function joinGameRoom(sender,text){
     for (i = 0; i<gameRoomArray.length;i++){
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom ++;
-            gameRoomArray[i].players.push(sender);
+            var alreadyJoined=0;
+            for (var j=0;g<gameRoomArray.players.length;j++){
+                if gameRoomArray[i].players[j] == sender{
+                    alreadyJoined++;
+                }
+            }
+            if(alreadyJoined == 0){
+                gameRoomArray[i].players.push(sender);
+            }
             sendTextMessage(sender, gameRoomArray[i].players.length);
         }
     }
