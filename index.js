@@ -39,6 +39,10 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+
+            //Kevin's section
+            var functions = require('./button');
+            functions.buttons(sender);
         }
     }
     res.sendStatus(200)
@@ -64,6 +68,4 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-//Kevin's section
-//var functions = require('./button');
-//functions.buttons();
+
