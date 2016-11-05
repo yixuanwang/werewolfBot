@@ -25,8 +25,7 @@ const request = require('request')
 const app = express()
 const events = require('events');
 
-var startBot = new events.EventEmitter(); 
-startBot.on('createGameRoom', createGameRoom(sender));
+
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -63,6 +62,8 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             if(text == "creategame") {
+                let startBot = new events.EventEmitter(); 
+                startBot.on('createGameRoom', createGameRoom(sender));
                 startBot.emit('createGameRoom');
             }
             //$.getScript("button.js", buttons(sender) {
