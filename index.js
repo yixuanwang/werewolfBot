@@ -95,8 +95,9 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
         if (event.postback) {
-                let text = JSON.stringify(event.postback)
-                console.log("Postback received: " + text.substring(11,text.length-2));
+                
+                console.log("Postback received: " + JSON.stringify(event.postback));
+ +                //sendTextMessage(sender ,text.substring(10,text.length-2));
                 continue;
             }
     }
@@ -230,6 +231,8 @@ function joinGameRoom(sender,text){
     sendTextMessage(sender, "pre-loop");
     for (let i = 0; i<gameRoomArray.length;i++){
         sendTextMessage(sender, "loop");
+        sendTextMessage(sender, gameRoomArray[i].id);
+        sendTextMessage(sender, text.substring(5,11));
         if(gameRoomArray[i].id == text.substring(5,11)){
             validRoom = true;
             gameRoomArray[i].players.push(sender);
