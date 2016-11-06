@@ -284,7 +284,9 @@ function playerRearrange(sender,roomid) {
         for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
             sendTextMessage(sender, "in for loop");
             let tempPlayer = new player(gameRoomArray[roomid].players[i]);
+            tempPlayer.name = "Player" + i;
             globalPlayer.push(tempPlayer);
+            sendTextMessage(sender, globalPlayer[i].name);
         }
     }
     else {
