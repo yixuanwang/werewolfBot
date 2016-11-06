@@ -33,6 +33,14 @@ function gameRoom(id, position) {
 var takenID = [];
 var gameRoomArray = [];
 
+function player (id){
+    this.id = id;
+    this.name = "player";
+    this.alive = true;
+    this.role = "villager";
+
+}
+
 
 app.set('port', (process.env.PORT || 5000))
 
