@@ -111,7 +111,7 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
-            sendTextMessage(sender, "Hi, welcome to the Werewolf Game! " + text.substring(0, 200))            
+            sendTextMessage(sender, "Welcome to the world of Werewolf! Use 'creategame' to create a gameroom, use 'join #roomID' to join a current game and use 'help' for help. (" + text.substring(0, 200) + ") is not recognized.")            
         }
         if (event.postback) {
                 
@@ -330,7 +330,8 @@ function startgame(sender, roomid){
 
                 if (sender == gameRoomArray[roomid].players[0]){
                     //turn(gameRoomArray[roomid].players, turn1text);
-                    messageEveryone(roomid, "Admin started game for room "+ roomid);
+                    messageEveryone(roomid, "Admin started game for room "+ roomid + ". Game is starting, please wait while roles are assigned.");
+                    messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!")
                     /*for(j=0; j<globalPlayer.length; j++){
                         sendTextMessage(sender, globalPlayer[j].id);
                     }*/
