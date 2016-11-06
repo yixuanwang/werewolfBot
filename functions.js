@@ -88,7 +88,7 @@ if(gameRoomArray[i].time==day && text.substring(0,5) == "lynch " ){
 	target.push(text(5, 20));
 }
 
-function gameEnd (gameid){
+function checkEnd (gameid){
 	var wolvesAlive = 0;
 	var villagersAive = 0;
 	for (var i=0; i<globalPlayer.length; i++){
