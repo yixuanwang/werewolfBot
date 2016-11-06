@@ -84,6 +84,10 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Number of Active Games: " + gameRoomArray.length);
                 continue;
             }
+            if (text == "image"){
+                sendNightOptions(sender);
+                continue;
+            }
 
             //end game function **put with other if statements**
 
