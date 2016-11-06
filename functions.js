@@ -54,16 +54,17 @@ function joinGameRoom(sender,text){
 
 function daytime (gameid){
 	for(var i = 0; i<globalPlayer.length;i++){
-		sendTextMessage(players.id, "It is now time to vote for who to lynch, the player who are still alive are: ");
+		sendTextMessage(players.id, "It is now time to vote for who to lynch by typing 'lynch (player name), the player who are still alive are: ");
 		for (var j = 0; j<globalPlayer.length;j++){
 			if(globalPlayer[j].alive){
 				sendTextMessage(players.id, player.name);
+				var totalVotes ++;
 			}
 		}
 	}
-	var totalVotes=0;
 	while(totalVotes<gameRoomArray[gameid].players.length){
-		//collect votes
+		//get vote
+		if (text.substring() == )
 	}
 
 
@@ -80,4 +81,9 @@ function nighttime (gameid){
 			sendTextMessage(globalPlayer[i].id, "It is nighttime, have so rest");
 		}
 	}
+}
+
+
+if(gameRoomArray[i].time==day && text.substring(0,5) == "lynch " ){
+	target.push(text(5, 20));
 }
