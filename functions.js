@@ -121,14 +121,10 @@ function getPlayer(sender){
 	}
 }
 
-if(gameRoomArray[globalPlayer[i]].time == "day" && globalPlayer[i].alive && votesCurrent<totalVotes && text.substring(0,5) == "lynch "){
+if(gameRoomArray[globalPlayer[i].room].time == "day" && globalPlayer[i].alive && votesCurrent<totalVotes && text.substring(0,5) == "lynch "){
 
 }
 
 function getVote(player, text){
-	for (var i = 0; i<globalPlayer.length; i++){
-		if(text.substring(5,20) == globalPlayer[i].name){
-			
-		}
-	}
+	gameRoomArray[globalPlayer[player].room].suspects.push(text.substring(5,15));
 }
