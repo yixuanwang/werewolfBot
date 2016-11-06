@@ -378,12 +378,34 @@ function startgame(sender, roomid){
 }
 
 
-function turn(players, turntext){
-    for (i=0; i<players.length;i++){
-        sendTextMessage(players[i], "Welcome");
-        };
-        generateRole(roles);
- }
+//function turn(players, turntext){
+//    for (i=0; i<players.length;i++){
+//        sendTextMessage(players[i], "Welcome");
+//        };
+//        generateRole(roles);
+//}
+function askWolvesKill(roomid) {
+    var i;
+    if(gameRoomArray[roomid]) {
+        for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
+        sendTextMessage(gameRoomArray[roomid].wolves[i], gameNightAskWolfText);
+        }
+    }
+    else {
+        console.log('Error in askWolvesKill');
+    }
+}
+
+function displayWolvesPossibleChoice(roomid) {
+    ;
+}
+
+function turn(roomid) {
+    //handle the wolves' evening thing
+    askWolvesKill(roomid);
+    displayWolvesPossibleChoice(roomid);
+}
+
 
 
 // sender only for debugging
