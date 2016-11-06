@@ -252,7 +252,9 @@ function sendNightOptions(sender) {
                         ]
                     }
                 }
-                request({
+                
+            }
+            request({
                     url: 'https://graph.facebook.com/v2.6/me/messages',
                     qs: {access_token:token},
                     method: 'POST',
@@ -267,7 +269,6 @@ function sendNightOptions(sender) {
                         console.log('Error: ', response.body.error)
                     }
              })
-            }
         }
         
     }
