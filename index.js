@@ -335,7 +335,7 @@ function startgame(sender, roomid){
                     messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!");
                     // test
                     var j;// j is test
-                    generateRole(roomid);
+                    generateRole(sender, roomid);
                     for(j = 0; j < gameRoomArray[roomid].players.length; j++) {
                         sendTextMessage(sender, globalPlayer[i].role);
                     }
@@ -363,14 +363,16 @@ function turn(players, turntext){
         generateRole(roles);
  }
 
-function generateRole(roomid){
+
+// sender only for debugging
+function generateRole(sender, roomid){
     
     if(gameRoomArray[roomid]) {
         var tempPlayerArray = gameRoomArray[roomid].players;
         var playerCount = tempPlayerArray.length;
         var wolfCount = Math.floor(playerCount / 3);
         //test
-        console.log(wolfCount);
+        sendTextMessage(sender, "wolfCount is " + wolfCount);
         var i;
         var j;
         var tempRandNum = [];
@@ -378,9 +380,11 @@ function generateRole(roomid){
             var rand = Math.floor((Math.random() * playerCount) );
             if(tempRandNum.indexOf(rand) > -1) continue;
             tempRandNum.push(rand);
+            sendTextMessage(sender, "the rand num is " + rand);
         }
         for(i = 0; i < wolfCount; i++) {
             var wolfUserID = tempPlayerArray[tempRandNum[i]];
+            sendTextMessage(sender, "our wolfUserID is " + wolfUserID);
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
                     globalPlayer[j].role = "wolf";
