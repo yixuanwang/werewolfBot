@@ -38,8 +38,11 @@ function player (id){
     this.name = "player";
     this.alive = true;
     this.role = "villager";
+    this.room;
 
 }
+
+var globalPlayer = []
 
 
 app.set('port', (process.env.PORT || 5000))
@@ -152,24 +155,11 @@ function createGameRoom (sender){
     let test = new gameRoom(finalid, gameRoomArray.length);
     test.players.push(sender);
     gameRoomArray.push(test);
-    
 
-    //let IDTaken = false;
-    //var roomIDTaken = require('./data').roomIDTaken;
-    //var players = require('./data').players;
-    //do{
-    //    var roomID = Math.floor(Math.random()*90000) + 10000;
-    //    for (let i = 0; i<roomIDTaken.length; i++){
-    //        if (roomID == roomIDTaken[i]){
-    //            IDTaken = true;
-    //        }
-    //    }
-    //}while(IDTaken == true);
-    //roomIDTaken.push(roomID);
-    //players.push(sender);
-    // test player.push
-    //let testMessage = {text: "you are: " + players[0]}; 
-    //sendTextMessage(sender, testMessage);
+    let tempPlayer = new player(sender);
+    tempPlayer.room = finalid;
+    tempPlayer.name = "player" + gameRoomArray[];
+    
     let startMessage = { text: "You have created a game, you're room ID is: "+ finalid };
     sendTextMessage(sender, startMessage);
     request({
