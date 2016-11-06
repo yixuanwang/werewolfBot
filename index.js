@@ -227,7 +227,7 @@ function sendNightOptions(sender) {
         if(globalPlayer[j].role == "villager") {
 
         }
-        else if(globalPlayer[j].role == "wolf") {
+        else (globalPlayer[j].role == "wolf") {
             let messageData = {
                 "attachment": {
                     "type": "template",
@@ -254,7 +254,7 @@ function sendNightOptions(sender) {
                 }
                 
             }
-            
+
         }
         
     }
