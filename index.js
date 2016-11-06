@@ -405,6 +405,7 @@ function displayWolvesPossibleChoice(roomid) {
     var i;
     if(gameRoomArray[roomid]) {
         for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
+            sendTextMessage(gameRoomArray[roomid].wolves[i], "The following Players are people who you can eat, enter 'eat #playerName' to eat people. Don't enter the #");
             var j;
             for(j = 0; j < gameRoomArray[roomid].villagers.length; j++) {
                 var k;
