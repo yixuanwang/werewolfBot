@@ -223,10 +223,10 @@ function createGameRoom (sender){
 }
 
 function sendNightOptions(sender) {
-    for(var j = 0; j < globalPlayer.length; j++) {
+    //for(var j = 0; j < globalPlayer.length; j++) {
         //if(globalPlayer[j].role == "villager") {
 
-        }
+        //}
         //else if(globalPlayer[j].role == "wolf") {
             let messageData = {
                 "attachment": {
@@ -272,7 +272,7 @@ function sendNightOptions(sender) {
         }
     
     
-}
+
 
 function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
