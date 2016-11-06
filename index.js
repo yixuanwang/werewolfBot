@@ -96,6 +96,21 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
+            if (text.substring(0,4) == "eat ") {
+                let j;
+                var roomid;
+                for(j = 0; j < globalPlayer.length; j++) {
+                    if(sender == globalPlayer[j].id) {
+                        roomid = globalPlayer[j].room;
+                        break;
+                    }
+                }
+                if(gameRoomArray[roomid] && gameRoomArray[roomid].time == "night") {
+                    uploadTarget(roomid, text.substring(4,7));
+                }
+            }
+
+
             //end game function **put with other if statements**
 
             if (text.substring(0,8)== "endgame ") {
@@ -435,6 +450,76 @@ function turnNightOnce(roomid) {
     displayWolvesPossibleChoice(roomid);
 }
 
+
+// when gameRoomArray[roomid].time = night
+// when text.substring(0,4) == "eat " 
+// target = text.substring(4,7)
+function uploadTarget(roomid, target) {
+    if(gameRoomArray[roomid]) {
+        var j;
+        var targetID;
+        for(j = 0; j < globalPlayer.length; j++) {
+            if(target == globalPlayer[j].name) {
+                targetID = globalPlayer[j].id;
+                break;
+            }
+        }
+        gameRoomArray[roomid].targets.push(targetID);
+        if(gameRoomArray[roomid].targets.length == gameRoomArray[roomid].wolves.length) {
+            let i;
+            var tempTargetID = maxElement(gameRoomArray[roomid].targets);
+            var tempTarget;
+            for(i = 0; i < globalPlayer.length; i++) {
+                if(tempTargetID == globalPlayer[i].id) {
+                    tempTarget = globalPlayer[i].name;
+                }
+            }
+            for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
+                sendTextMessage(gameRoomArray[roomid].wolves[i], "Target has been chosen. Your target is " + tempTarget);
+            }
+            gameRoomArray[roomid].victim = tempTarget;
+            gameRoomArray[roomid].time = "morning";
+            displayDaytimeResult(roomid);
+        }
+        else {
+            let i;
+            for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
+                sendTextMessage(gameRoomArray[roomid].wolves[i], "Waiting for other wolves :)");
+            }
+        }
+    }
+    else {
+        console.log('Error in uploadTarget');
+    }
+    
+}
+
+function displayDaytimeResult(roomid) {
+    messageEveryone(roomid, "Poor guy " + gameRoomArray[roomid].victim + " was eaten by the wolves. RIP. Discuss who you think is the wolf and use 'lynch PLAYERID' to lynch");
+}
+
+// function to find highest occurance element in an array
+function maxElement(array)
+{
+    if(array.length == 0)
+        return null;
+    var modeMap = {};
+    var maxEl = array[0], maxCount = 1;
+    for(var i = 0; i < array.length; i++)
+    {
+        var el = array[i];
+        if(modeMap[el] == null)
+            modeMap[el] = 1;
+        else
+            modeMap[el]++;  
+        if(modeMap[el] > maxCount)
+        {
+            maxEl = el;
+            maxCount = modeMap[el];
+        }
+    }
+    return maxEl;
+}
 
 
 // sender only for debugging
