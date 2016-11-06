@@ -428,21 +428,24 @@ function playerButtons(roomNum)
                     "title": "Day Time",
                     "subtitle": "Who do you want to choose to lynch?",
 
-                    "buttons": [{
+                    "buttons": 
+                    [{
                         "type": "postback",
                         "payload": "You lynched no one this day",
                         "title": "No One",
 
-                    }, for (var i = 0; i<roomNum; i++)
+                    }, 
+
+                    for (var i = 0; i<roomNum; i++)
                     {                                              
                             if (roomNum == event.sender.room)
                             {
-                                for (var j=0; j < roomArray[i].players.length; j++)
+                                for (var j=0; j < gameRoomArray[i].players.length; j++)
                                 {
                                     "type": "postback",
                                     "payload": "Your vote has been set",
-                                    "title": "roomArray[i].players[j]",
-                                }
+                                    "title": j //gameRoomArray[i].players[j],
+                                },
                             }
                                                
                     }],
