@@ -101,6 +101,11 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
+            if (text.substring(0,6) == "start "){
+                startgame(sender, text.substring(6,9));
+                continue;
+            }
+
             sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
         }
         if (event.postback) {
