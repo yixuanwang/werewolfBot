@@ -337,7 +337,7 @@ function startgame(sender, roomid){
                     var j;// j is test
                     generateRole(sender, roomid);
                     for(j = 0; j < gameRoomArray[roomid].players.length; j++) {
-                        sendTextMessage(sender, globalPlayer[i].role);
+                        sendTextMessage(sender, globalPlayer[j].role);
                     }
                     break;
 
