@@ -171,6 +171,7 @@ function endGame(sender, id) {
     }
     delete gameRoomArray[id].id;
     delete gameRoomArray[id].players;
+    globalPlayer = [];
 }
 
 function checkID(room){
@@ -320,7 +321,7 @@ function playerRearrange(sender,roomid) {
 
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
-    var i;
+    var i; 
     if (gameRoomArray[roomid]){ 
         if(gameRoomArray[roomid].players){
             playerRearrange(sender, roomid);
@@ -331,10 +332,13 @@ function startgame(sender, roomid){
                 if (sender == gameRoomArray[roomid].players[0]){
                     //turn(gameRoomArray[roomid].players, turn1text);
                     messageEveryone(roomid, "Admin started game for room "+ roomid + ". Game is starting, please wait while roles are assigned.");
-                    messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!")
-                    /*for(j=0; j<globalPlayer.length; j++){
-                        sendTextMessage(sender, globalPlayer[j].id);
-                    }*/
+                    messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!");
+                    // test
+                    var j;// j is test
+                    generateRole(roomid);
+                    for(j = 0; j < gameRoomArray[roomid].players.length; j++) {
+                        sendTextMessage(sender, globalPlayer[i].role);
+                    }
                     break;
 
                 } else if (i==gameRoomArray[roomid].players.length-1){
@@ -358,7 +362,7 @@ function turn(players, turntext){
         };
         generateRole(roles);
  }
- 
+
 function generateRole(roomid){
     
     if(gameRoomArray[roomid]) {
