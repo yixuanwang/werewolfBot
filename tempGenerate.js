@@ -4,6 +4,8 @@ function generateRole(roomid){
         var tempPlayerArray = gameRoomArray[roomid].players;
         var playerCount = tempPlayerArray.length;
         var wolfCount = Math.floor(playerCount / 3);
+        //test
+        console.log(wolfCount);
         var i;
         var j;
         var tempRandNum = [];
@@ -13,15 +15,17 @@ function generateRole(roomid){
             tempRandNum.push(rand);
         }
         for(i = 0; i < wolfCount; i++) {
-            let wolfUserID = tempPlayerArray[tempRandNum[i]];
+            var wolfUserID = tempPlayerArray[tempRandNum[i]];
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
-                    globalPlayer[i].role = "wolf";
+                    globalPlayer[j].role = "wolf";
                     break;
                 }
             }
         }
-        gameRoomArray[roomid].players = tempPlayerArray;
+        tempRandNum = [];
+
+        //gameRoomArray[roomid].players = tempPlayerArray;
     }
     else {
         console.log('Error in generateRole');
