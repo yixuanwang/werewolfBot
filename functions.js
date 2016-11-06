@@ -90,22 +90,24 @@ if(gameRoomArray[i].time==day && text.substring(0,5) == "lynch " ){
 
 function checkEnd (gameid){
 	var wolvesAlive = 0;
-	var villagersAive = 0;
+	var othersAlive = 0;
 	for (var i=0; i<globalPlayer.length; i++){
-		if (globalPlayer[i].role=="wolf" && globalPlayer[i].alive){
+		if (globalPlayer[i].alive){
+			if(globalPlayer[i].role=="wolf"){
 			wolvesAlive++;
-		}
-		else if(globalPlayer[i].role=="villager" && globalPlayer[i].alive){
-			villagersAive++;
+			}
+			else{
+				othersAlive++;
+			}
 		}
 	}
-	if(wolvesAlive && villagersAive){
+	if(wolvesAlive && othersAlive){
 	}
 	else if(wolvesAlive){
-		messageEveryone(gameid, "All the villagers are dead, the werewolves have won.");
+		messageEveryone(gameid, "Only wolves remain alive, the werewolves have won.");
 	}
-	else if(villagersAive){
-		messageEveryone(gameid, "All the werewolves are dead, the villagers have won.");
+	else if(othersAlive){
+		messageEveryone(gameid, "All the werewolves are dead, the village is safe");
 	}
 
 }
