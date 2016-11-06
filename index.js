@@ -367,7 +367,7 @@ function generateRole(roomid){
     
     if(gameRoomArray[roomid]) {
         var playerCount = globalPlayer.length;
-        var wolfCount = Math.floor(playerCount / 3);
+        var wolfCount = playerCount/ 3;
         var i=0;
         while(i<=wolfCount){
             let x = globalPlayer.randomElement().id;
@@ -376,6 +376,7 @@ function generateRole(roomid){
                 if(globalPlayer[j].id == x && globalPlayer[j].role == "villager") {
                     globalPlayer[j].role = "wolf";
                     i++
+                    break;
                 }
             }
         }
