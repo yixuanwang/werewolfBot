@@ -26,14 +26,18 @@ function playerRearrange(roomid) {
 function startgame(sender, roomid){
 	playerRearrange(roomid);
 	var i;
-	for (i=0; i < gameRoomArray[roomid].players.length; i++) {
-		sendTextMessage(sender, "You are in the loop");
+	if (gameRoomArray[roomid].players.length){
+		for (i=0; i < gameRoomArray[roomid].players.length; i++) {
+			sendTextMessage(sender, "You are in the loop");
 
-		if (sender == gameRoomArray[roomid].players[0]){
-			turn(gameRoomArray[roomid].players, turn1text);
-		} else {
-			sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+			if (sender == gameRoomArray[roomid].players[0]){
+				turn(gameRoomArray[roomid].players, turn1text);
+			} else {
+				sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+			}
 		}
+	} else {
+		sendTextMessage(sender, "room is undefined again")
 	}
 }
 
