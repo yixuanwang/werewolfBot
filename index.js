@@ -87,25 +87,15 @@ app.post('/webhook/', function (req, res) {
 
             //end game function **put with other if statements**
 
-            if (text == "end game")
-            {
-                endGame();
-
-                break;
+            if (text.substring(0,8)== "endgame ") {
+                endGame(sender, text.substring(8,11));
+                continue;
             }
 
             if (text == "image"){
                 sendNightOptions(sender);
                 continue;
             }
-
-
-
-            if (text == "checkarray"){
-                var roomIDTaken = require('./data').roomIDTaken;
-                console.info(roomIDTaken);
-            }
-
 
             if (text.substring(0,5) == "join "){
                 joinGameRoom(sender, text);
@@ -150,24 +140,14 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function endGame() 
-{
-    sendTextMessage(sender,"Sorry! The admin has ended the game prematurely.");
-    for (var i=0; i<gameRoomArray.length; i++)
-    {
-        sendTextMessage(sender, event.sender.room);
-        if (i == event.sender.room)
-        {
-            for (var j=0; j < gameRoomArray[i].players.length; j++)
-            {
-                delete gameRoomArray[i].players[j];
-            }
-        }
-
-        delete gameRoomArray[i];
+function endGame(sender, id) {
+    let i;
+    for(i=0; i<gameRoomArray[id].players.length; i++){
+        sendTextMessage(gameRoomArray[id].players[i],"Sorry! The admin has ended the game prematurely.");
     }
-
+    delete gameRoomArray[id];
 }
+
 function checkID(room){
     var i;
     for(i=0; i<takenID.length; i++){
