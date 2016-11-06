@@ -15,7 +15,7 @@ var gameReceiveCurrentJoinerText = player.id + " has joined the game. " + player
 var endGameText = "Sorry! The game has ended prematurely!";
 
 //when someone types in help
-var helpText = 
+var helpText = "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves.";
 
 
 //when someone fails to join a game because the game is already started
@@ -35,7 +35,7 @@ var gameFleeText = player.flee.id + " has fled in terror";
 
 /***************** WOLF *****************/
 //During the night, tell the wolves their role and their teammate, only once
-var gameNightWolfIntroText = "You are a WOLF!! XD (good on ya) Each night you can choose to kill someone. Make sure you communicate with your teammate, the tie will result to a random eat. " + "The other wolves are " + wolf.id;
+var gameNightWolfIntroText = "You are a Werewolf! Each night you can choose to kill someone. If a tie occurs in the choosing, one of the selected will be randomly chosen" + "The other wolves are " + wolf.id;
 
 //During the night, ask the wolf who he wants to eat, ask everynight
 var gameNightAskWolfText = "Who do you want to eat"
@@ -45,7 +45,7 @@ var gameNightWolfEatVoteText = voter.id + " has voted to eat " + victim.id
 
 /***************** Villager *****************/
 //when in the night, tell the villagers their role, only once
-var gameNightVillagerIntroText = "You are just a noraml Villager, hope you can survive. Try to find all the wolves! Ripppp"
+var gameNightVillagerIntroText = "You are just a noraml Villager. Your goal is to survive until the end of the game by lynching the Werewolves."
 
 /***************** WITCH *****************/
 //During the night, tell the witch her role, only once
@@ -54,8 +54,11 @@ var gameNightWitchIntroText = "You are a WITCH!!! You can save someone once and 
 //During the night, ask the witch who she wants to save. Check if she can save first and give her option: save, skip
 var gameNightWitchAskSaveText = victim.id + " died." + "Do you want to save his life";
 
-//During the night, ask the witch who she wants to poision. Check if she can poision first(he didn't use the poision and didn't save someone before in that night). The option will be skip, other players(except you)
+//During the night, ask the witch who she wants to poision. Check if she can poision first(she didn't use the poison and didn't save someone before in that night).
 var gameNightWitchAskPoisionText = "Who do you want to poision (You can skip this step)";
+
+//In the morning, say how many people died that night and who died
+var morningText = "Unfortunately, last night we found 1 person dead last night. They were killed by a werewolf.";
 
 /***************** SEER *****************/
 
@@ -83,6 +86,6 @@ var gameRemainText = players.length + " players remain";
 var gameLynchVoteText = voter.id + "has voted to lynch" + target.id;
 
 //Display the Lynch Result
-var gameLynchResultText = "The villagers have cast their votes, amid doubts and suspicions. " + finaltarget.id + " is dead. RIP.";
+var gameLynchResultText = "The villagers have cast their votes, amid doubts and suspicions. " + finaltarget.id + " has been voted to be executed. RIP.";
 
  
