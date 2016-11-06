@@ -328,7 +328,8 @@ function startgame(sender, roomid){
     if (gameRoomArray[roomid]){
         if(gameRoomArray[roomid].id){
             playerRearrange(sender, roomid);
-            messageEveryone(roomid, "We start!");
+            //THIS iS A TEST
+            //messageEveryone(roomid, "We start!");
             for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
                 if (sender == gameRoomArray[roomid].players[0]){
