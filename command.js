@@ -18,24 +18,16 @@ function flee(sender) {
 
 // Call everyone in the room
 /******** I AM NOT SURE IF THIS WOULD WORK!!!!!  ********/
-function callEveryone(roomid, text) {
-    let messageData = { text:text }
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-        	// I AM NOT SURE WITH THIS RECIPIENT ID
-            recipient: {id: gameRoomArray[roomid].players},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
+function messageEveryone(roomid, text) {
+	let i;
+	if(gameRoomArray[roomid]) {
+		for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
+			sendTextMessage(gameRoomArray[roomid].players[i], text);
+		}		
+	}
+	else {
+		console.log('Error in callEveryone');
+	}
 }
 
 
