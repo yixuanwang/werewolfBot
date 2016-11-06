@@ -370,10 +370,13 @@ function generateRole(roomid){
         var wolfCount = Math.floor(playerCount / 3);
         var i=0;
         while(i<=wolfCount){
-            let x = globalPlayer.randomElement();
-            if (x.role=="villager"){
-                x.role=="werewolf"
-                i++
+            let x = globalPlayer.randomElement().id;
+            let j;
+            for(j = 0; j < globalPlayer.length; j++) {
+                if(globalPlayer[j].id == x && globalPlayer[j].role == "villager") {
+                    globalPlayer[j].role = "wolf";
+                    i++
+                }
             }
         }
         /*for(i = 0; i <= wolfCount; i++) {
