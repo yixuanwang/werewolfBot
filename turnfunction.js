@@ -12,17 +12,19 @@ var arr = [1, 2, 3, 4, 5];
 arr.sort(randomsort);
 
 // if admin == sender, then the game starts
-function startgame(sender, admin){
-	if (sender == admin){
-		turn(GameRoom.players, turn1text)
-	} else {
-		
-	}
+function startgame(sender, roomid){
+	var i;
+	for (i=0; i<gameRoomArray[roomid].players.length; i++)
+		if (sender==gameRoomArray[roomid].players[0]){
+			turn(gameRoomArray[roomid].players, turn1text);
+		} else {
+			sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+		}
 }
 
 function turn(players, turntext){
- 			for (i=0; i<players.length;i++){
-			
+ 	for (i=0; i<players.length;i++){
+ 		senTextMessage(players[i], )
 		};
 		generateRole(roles);
  }
