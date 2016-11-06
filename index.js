@@ -166,7 +166,7 @@ function checkID(room){
 
 
 function createGameRoom (sender){
-    sendTextMessage(sender, "creating");
+    //sendTextMessage(sender, "creating");
     let finalid = gameRoomArray.length;
     let test = new gameRoom(finalid);
     test.players.push(sender);
@@ -275,12 +275,20 @@ var arr = [1, 2, 3, 4, 5];
 arr.sort(randomsort);
 
 
-function playerRearrange(roomid) {
+function playerRearrange(sender,roomid) {
     var i;
-    console.log(gameRoomArray);
-    for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
-        let tempPlayer = new player(gameRoomArray[roomid].players[i]);
-        globalPlayer.push(tempPlayer);
+    sendTextMessage(sender, "in playerRearrange");
+    //console.log(gameRoomArray);
+    if(gameRoomArray[roomid]) {
+        sendTextMessage(sender, "in if argument");
+        for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
+            sendTextMessage(sender, "in for loop");
+            let tempPlayer = new player(gameRoomArray[roomid].players[i]);
+            globalPlayer.push(tempPlayer);
+        }
+    }
+    else {
+        sendTextMessage(sender, "No Active Player");
     }
 }
 
@@ -288,7 +296,7 @@ function playerRearrange(roomid) {
 
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
-    //playerRearrange(roomid);
+    playerRearrange(sender, roomid);
     var i;
     if (gameRoomArray[roomid]){
         for (i=0; i < gameRoomArray[roomid].players.length; i++) {
