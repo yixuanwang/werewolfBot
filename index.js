@@ -89,20 +89,8 @@ app.post('/webhook/', function (req, res) {
 
             if (text == "end game")
             {
-                sendTextMessage(sender,"Sorry! The admin has ended the game prematurely.");
-                for (i=0; i<gameRoomArray.length; i++)
-                {
-                    if (i == event.sender.room)
-                    {
-                        for (j=0; j < gameRoomArray[i].players.length; j++)
-                        {
-                            delete gameRoomArray[i].players[j];
-                        }
-                    }
-
-                    delete gameRoomArray[i];
-                }
-
+                endGame();
+                break;
             }
 
             if (text == "image"){
@@ -161,6 +149,23 @@ function sendTextMessage(sender, text) {
     })
 }
 
+function endGame() 
+{
+    sendTextMessage(sender,"Sorry! The admin has ended the game prematurely.");
+    for (var i=0; i<gameRoomArray.length; i++)
+    {
+        if (i == event.sender.room)
+        {
+            for (var j=0; j < gameRoomArray[i].players.length; j++)
+            {
+                delete gameRoomArray[i].players[j];
+            }
+        }
+
+        delete gameRoomArray[i];
+    }
+
+}
 function checkID(room){
     var i;
     for(i=0; i<takenID.length; i++){
