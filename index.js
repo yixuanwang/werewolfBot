@@ -115,6 +115,7 @@ app.post('/webhook/', function (req, res) {
 
             if (text.substring(0,6) == "start "){
                 startgame(sender, text.substring(6,9));
+                turnNightOnce(text.substring(6,9));
                 continue;
             }
 
@@ -364,8 +365,8 @@ function startgame(sender, roomid){
                             sendTextMessage(globalPlayer[j].id, gameNightVillagerIntroText);
                         }
                     }
-                    messageEveryone(roomid, "Night time starts!!");
-                    turnNightOnce(roomid);
+                    //messageEveryone(roomid, "Night time starts!!");
+                    //turnNightOnce(roomid);
 
                     break;
 
@@ -421,6 +422,7 @@ function displayWolvesPossibleChoice(roomid) {
 }
 
 function turnNightOnce(roomid) {
+    messageEveryone(roomid, "Night time starts!!");
     //handle the wolves' evening thing
     askWolvesKill(roomid);
     displayWolvesPossibleChoice(roomid);
