@@ -97,11 +97,11 @@ app.post('/webhook/', function (req, res) {
             }
 
             if (text.substring(0,4) == "eat ") {
-                var i;
+                let j;
                 var roomid;
-                for(i = 0; i < globalPlayer.length; i++) {
-                    if(sender == globalPlayer[i].id) {
-                        roomid = globalPlayer[i].room;
+                for(j = 0; j < globalPlayer.length; j++) {
+                    if(sender == globalPlayer[j].id) {
+                        roomid = globalPlayer[j].room;
                         break;
                     }
                 }
@@ -457,7 +457,7 @@ function uploadTarget(roomid, target) {
         }
         gameRoomArray[roomid].targets.push(targetID);
         if(gameRoomArray[roomid].targets.length == gameRoomArray[roomid].wolves.length) {
-            var i;
+            let i;
             var tempTargetID = maxElement(gameRoomArray[roomid].targets);
             var tempTarget;
             for(i = 0; i < globalPlayer.length; i++) {
@@ -473,7 +473,7 @@ function uploadTarget(roomid, target) {
             displayDaytimeResult(roomid);
         }
         else {
-            var i;
+            let i;
             for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
                 sendTextMessage(gameRoomArray[roomid].wolves[i], "Waiting for other wolves :)");
             }
