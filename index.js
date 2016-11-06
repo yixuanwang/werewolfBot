@@ -35,7 +35,7 @@ function player (id){
     this.id = id;
     this.name = "player";
     this.alive = true;
-    this.role = "villager";
+    this.role;
     this.room;
     this.admin = false;
 
@@ -387,9 +387,9 @@ function generateRole(sender, roomid){
             sendTextMessage(sender, "our wolfUserID is " + wolfUserID);
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
-                    sendTextMessage(sender, "if loop"+globalPlayer[j].id );
                     globalPlayer[j].role = "wolf";
-                    break;
+                } else {
+                    globalPlayer[j].role = "villager";
                 }
             }
         }
