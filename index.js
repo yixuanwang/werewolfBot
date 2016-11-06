@@ -77,6 +77,9 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
+
+            console.log("*** " + text + " ***");
+
             if(text == "creategame") {
                 createGameRoom(sender);
                 // This is a test
@@ -264,6 +267,7 @@ arr.sort(randomsort);
 
 function playerRearrange(roomid) {
     var i;
+    console.log(gameRoomArray);
     for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
         let tempPlayer = new player(gameRoomArray[roomid].players[i]);
         globalPlayer.push(tempPlayer);
