@@ -305,7 +305,7 @@ function startgame(sender, roomid){
 
             if (sender == gameRoomArray[roomid].players[0]){
                 //turn(gameRoomArray[roomid].players, turn1text);
-                sendTextMessage(sender, "The game started for room "+ roomid);
+                sendTextMessage(sender, "Admin started game for room "+ roomid);
                 var j;
                 /*for(j=0; j<globalPlayer.length; j++){
                     sendTextMessage(sender, globalPlayer[j].id);
