@@ -14,8 +14,10 @@
 - `forcestart` (Group Admin), start the game
 - `config` (Group Admin), set options for group
 - `smite` (Group Admin), kill players
+- `endgame` end the game, delete the gameRoom
 
 - `nextgame` bot will PM you when next game is starting
 - `ping` check bot reply time
 - `version` gets the current version
+- `play again` create a new game with same options and offer a request to all of players
 
