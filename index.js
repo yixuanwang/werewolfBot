@@ -114,7 +114,7 @@ app.post('/webhook/', function (req, res) {
 
             if (text.substring(0,7) == "morning")
             {
-                playerButtons[gameRoomArray];
+                playerButtons[gameRoomArray.id];
             }
             sendTextMessage(sender, "Welcome to the world of Werewolf! Use 'creategame' to create a gameroom, use 'join #roomID' to join a current game and use 'help' for help. (" + text.substring(0, 200) + ") is not recognized.")            
         }
@@ -416,8 +416,9 @@ function generateRole(sender, roomid){
 }
 
 //displays buttons with player names for day time lynch
-function playerButtons(roomArray)
+function playerButtons(roomNum)
 {
+    
     let messageData = {
         "attachment": {
             "type": "template",
@@ -432,10 +433,9 @@ function playerButtons(roomArray)
                         "payload": "You lynched no one this day",
                         "title": "No One",
 
-                    }, {
-                        for (var i=0; i<roomArray.length; i++)
-                        {
-                            if (i == event.sender.room)
+                    }, for (var i = 0; i<roomNum; i++)
+                    {                                              
+                            if (roomNum == event.sender.room)
                             {
                                 for (var j=0; j < roomArray[i].players.length; j++)
                                 {
@@ -444,7 +444,7 @@ function playerButtons(roomArray)
                                     "title": "roomArray[i].players[j]",
                                 }
                             }
-                        }                        
+                                               
                     }],
                 }, 
                 ]
