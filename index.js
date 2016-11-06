@@ -363,6 +363,7 @@ function startgame(sender, roomid){
                         }
                     }
                     messageEveryone(roomid, "Night time starts!!");
+                    turnNightOnce(roomid);
 
                     break;
 
@@ -400,13 +401,27 @@ function askWolvesKill(roomid) {
 }
 
 function displayWolvesPossibleChoice(roomid) {
-    ;
+    var i;
+    if(gameRoomArray[roomid]) {
+        for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
+            var j;
+            for(j = 0; j < gameRoomArray[roomid].villagers.length; j++) {
+                var k = ;
+                for(k = 0; k < globalPlayer.length; k++) {
+                    if(globalPlayer[k].id == gameRoomArray[roomid].villagers[j]) {
+                        sendTextMessage(gameRoomArray[roomid].wolves[i], globalPlayer[k].name);
+                    }
+                }
+            }
+        }
+    }
 }
 
-function turn(roomid) {
+function turnNightOnce(roomid) {
     //handle the wolves' evening thing
     askWolvesKill(roomid);
     displayWolvesPossibleChoice(roomid);
+
 
 }
 
