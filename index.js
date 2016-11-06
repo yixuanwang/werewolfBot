@@ -91,10 +91,10 @@ app.post('/webhook/', function (req, res) {
 
             //end game function **put with other if statements**
 
-            /*if (text.substring(0,8)== "endgame ") {
+            if (text.substring(0,8)== "endgame ") {
                 endGame(sender, text.substring(8,11));
                 continue;
-            }*/
+            }
 
             if (text == "image"){
                 sendNightOptions(sender);
@@ -144,13 +144,16 @@ function sendTextMessage(sender, text) {
     })
 }
 
-/*function endGame(sender, id) {
+function endGame(sender, id) {
     let i;
-    for(i=0; i<gameRoomArray[id].players.length; i++){
-        sendTextMessage(gameRoomArray[id].players[i],"Sorry! The admin has ended the game prematurely.");
+    for(i=0; i<globalPlayer.length; i++){
+        sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
     }
-    delete gameRoomArray[id];
-}*/
+    delete gameRoomArray[id].id;
+    delete gameRoomArray[id].players;
+    globalPlayer = [];
+
+}
 
 function checkID(room){
     var i;
