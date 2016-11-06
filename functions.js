@@ -87,3 +87,25 @@ function nighttime (gameid){
 if(gameRoomArray[i].time==day && text.substring(0,5) == "lynch " ){
 	target.push(text(5, 20));
 }
+
+function gameEnd (gameid){
+	var wolvesAlive = 0;
+	var villagersAive = 0;
+	for (var i=0; i<globalPlayer.length; i++){
+		if (globalPlayer[i].role=="wolf" && globalPlayer[i].alive){
+			wolvesAlive++;
+		}
+		else if(globalPlayer[i].role=="villager" && globalPlayer[i].alive){
+			villagersAive++;
+		}
+	}
+	if(wolvesAlive && villagersAive){
+	}
+	else if(wolvesAlive){
+		messageEveryone(gameid, "All the villagers are dead, the werewolves have won.");
+	}
+	else if(villagersAive
+		messageEveryone(gameid, "All the werewolves are dead, the villagers have won.");
+	}
+
+}
