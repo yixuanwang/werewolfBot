@@ -325,21 +325,15 @@ function startgame(sender, roomid){
     if (gameRoomArray[roomid]){ 
         if(gameRoomArray[roomid].players){
             playerRearrange(sender, roomid);
-            //THIS iS A TEST
-            //messageEveryone(roomid, "We start!");
+
             for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
                 if (sender == gameRoomArray[roomid].players[0]){
                     //turn(gameRoomArray[roomid].players, turn1text);
                     messageEveryone(roomid, "Admin started game for room "+ roomid + ". Game is starting, please wait while roles are assigned.");
                     messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!");
-                    // test
-                    var j;// j is test
+
                     generateRole(sender, roomid);
-                        sendTextMessage(sender, globalPlayer[0].role);
-                        sendTextMessage(sender, globalPlayer[1].role);
-                        sendTextMessage(sender, globalPlayer[2].role);
-                        sendTextMessage(sender, globalPlayer[3].role);
 
                     break;
 
@@ -373,39 +367,35 @@ function generateRole(sender, roomid){
         var tempPlayerArray = gameRoomArray[roomid].players;
         var playerCount = tempPlayerArray.length;
         var wolfCount = Math.floor(playerCount / 3);
-        //test
-        sendTextMessage(sender, "wolfCount is " + wolfCount);
+
         var i;
         var tempRandNum = [];
         for(i = 0; i < wolfCount; i++) {
             var rand = Math.floor((Math.random() * playerCount) );
             if(tempRandNum.indexOf(rand) > -1) continue;
             tempRandNum.push(rand);
-            sendTextMessage(sender, "the rand num is " + tempRandNum[i]);
+            
         }
         for(i = 0; i < wolfCount; i++) {
             var wolfUserID = tempPlayerArray[tempRandNum[i]];
-            sendTextMessage(sender, "our wolfUserID is " + wolfUserID);
+            
             var j;
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
                     globalPlayer[j].role = "wolf";
-                    sendTextMessage(sender, "our globalPlayer " + j + " role is " + globalPlayer[j].role);
+                    
                 } else {
                     globalPlayer[j].role = "villager";
-                    sendTextMessage(sender, "our globalPlayer " + j + " role is " + globalPlayer[j].role);
+                    
                 }
             }
         }
         tempRandNum = [];
 
-        //gameRoomArray[roomid].players = tempPlayerArray;
+
     }
     else {
         console.log('Error in generateRole');
     }
-    //var randarray = playersArray;
-    //for (i=0; i<players.length;i++){
-    //   var rand = randarray.randomElement();        
-    //};
+
 }
