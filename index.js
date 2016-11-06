@@ -91,10 +91,10 @@ app.post('/webhook/', function (req, res) {
 
             //end game function **put with other if statements**
 
-            /*if (text.substring(0,8)== "endgame ") {
+            if (text.substring(0,8)== "endgame ") {
                 endGame(sender, text.substring(8,11));
                 continue;
-            }*/
+            }
 
             if (text == "image"){
                 sendNightOptions(sender);
@@ -144,13 +144,20 @@ function sendTextMessage(sender, text) {
     })
 }
 
-/*function endGame(sender, id) {
+function endGame(sender, id) {
     let i;
-    for(i=0; i<gameRoomArray[id].players.length; i++){
-        sendTextMessage(gameRoomArray[id].players[i],"Sorry! The admin has ended the game prematurely.");
+    if (sender == globalPlayer[0].id){
+        for(i=0; i<globalPlayer.length; i++){
+            sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
+        }
+    }else{
+        sendTextMessage(sender, "You are not the admin of the room "+ roomid);
     }
-    delete gameRoomArray[id];
-}*/
+    delete gameRoomArray[id].id;
+    delete gameRoomArray[id].players;
+    globalPlayer = [];
+
+}
 
 function checkID(room){
     var i;
@@ -242,17 +249,22 @@ function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
     if (gameRoomArray[text.substring(5,8)]){
         var alreadyJoined=0;
-        for (var j=0;j<gameRoomArray[text.substring(5,8)].players.length;j++){
-            if (gameRoomArray[text.substring(5,8)].players[j] == sender){
-                alreadyJoined++;
+        if(gameRoomArray[text.substring(5,8)].players){
+            for (var j=0;j<gameRoomArray[text.substring(5,8)].players.length;j++){
+                if (gameRoomArray[text.substring(5,8)].players[j] == sender){
+                    alreadyJoined++;
+                }
             }
+            if(alreadyJoined == 0){
+                gameRoomArray[text.substring(5,8)].players.push(sender);
+            }
+            sendTextMessage(sender, "Number of players: " + gameRoomArray[text.substring(5,8)].players.length);
+            var joinMessage ="you have successfully joined the room: "+ text.substring(5,8);
+            sendTextMessage(sender, joinMessage);
+        } else {
+            sendTextMessage(sender, "Invalid Game Room");
+
         }
-        if(alreadyJoined == 0){
-            gameRoomArray[text.substring(5,8)].players.push(sender);
-        }
-        sendTextMessage(sender, "Number of players: " + gameRoomArray[text.substring(5,8)].players.length);
-        var joinMessage ="you have successfully joined the room: "+ text.substring(5,8);
-        sendTextMessage(sender, joinMessage);
     } else{
         var joinMessage = "room ID invalid";
         sendTextMessage(sender, joinMessage);
