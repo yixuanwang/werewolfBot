@@ -336,9 +336,11 @@ function startgame(sender, roomid){
                     // test
                     var j;// j is test
                     generateRole(sender, roomid);
-                    for(j = 0; j < gameRoomArray[roomid].players.length; j++) {
-                        sendTextMessage(sender, globalPlayer[j].role);
-                    }
+                        sendTextMessage(sender, globalPlayer[0].role);
+                        sendTextMessage(sender, globalPlayer[1].role);
+                        sendTextMessage(sender, globalPlayer[2].role);
+                        sendTextMessage(sender, globalPlayer[3].role);
+
                     break;
 
                 } else if (i==gameRoomArray[roomid].players.length-1){
