@@ -104,7 +104,7 @@ function gameEnd (gameid){
 	else if(wolvesAlive){
 		messageEveryone(gameid, "All the villagers are dead, the werewolves have won.");
 	}
-	else if(villagersAive
+	else if(villagersAive){
 		messageEveryone(gameid, "All the werewolves are dead, the villagers have won.");
 	}
 
