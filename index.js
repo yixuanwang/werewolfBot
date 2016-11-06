@@ -32,6 +32,7 @@ function gameRoom(id) {
     this.targets = []; // targets are people that wolves want to kill
     this.victims;
     this.suspects = [];
+    this.winner;
 }
 var takenID = [];
 var gameRoomArray = [];
@@ -421,8 +422,6 @@ function turnNightOnce(roomid) {
     //handle the wolves' evening thing
     askWolvesKill(roomid);
     displayWolvesPossibleChoice(roomid);
-
-
 }
 
 
