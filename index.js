@@ -223,9 +223,9 @@ function createGameRoom (sender){
 }
 
 function sendNightOptions(sender) {
-    for(j = 0; j < globalPlayer.length; j++) {
+    for(var j = 0; j < globalPlayer.length; j++) {
         if(globalPlayer[j].role == "villager") {
-            
+
         }
         else if(globalPlayer[j].role == "wolf") {
             let messageData = {
@@ -236,12 +236,12 @@ function sendNightOptions(sender) {
                         "elements": [{
                             "title": "Night Time",
                             "subtitle": "What action do you want to do?",
-                            
+
                             "buttons": [{
                                 "type": "postback",
                                 "payload": "You killed someone this turn",
                                 "title": "Kill someone",
-                                
+
                             }, {
                                 "type": "postback",
                                 "payload": "You did nothing this turn",
