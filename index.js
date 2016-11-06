@@ -406,7 +406,7 @@ function displayWolvesPossibleChoice(roomid) {
         for(i = 0; i < gameRoomArray[roomid].wolves.length; i++) {
             var j;
             for(j = 0; j < gameRoomArray[roomid].villagers.length; j++) {
-                var k = ;
+                var k;
                 for(k = 0; k < globalPlayer.length; k++) {
                     if(globalPlayer[k].id == gameRoomArray[roomid].villagers[j]) {
                         sendTextMessage(gameRoomArray[roomid].wolves[i], globalPlayer[k].name);
