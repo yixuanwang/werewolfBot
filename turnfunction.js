@@ -11,8 +11,20 @@ function randomsort(a, b) {
 var arr = [1, 2, 3, 4, 5];
 arr.sort(randomsort);
 
+
+function playerRearrage(roomid) {
+	var i;
+	for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
+		let tempPlayer = new player(gameRoomArray[roomid].players[i]);
+		globalPlayer.push(tempPlayer);
+	}
+}
+
+
+
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
+	playerRearrage(roomid);
 	var i;
 	for (i=0; i<gameRoomArray[roomid].players.length; i++)
 		if (sender==gameRoomArray[roomid].players[0]){
