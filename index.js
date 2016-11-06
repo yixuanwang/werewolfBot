@@ -24,11 +24,9 @@ const request = require('request')
 const app = express()
 const events = require('events');
 
-function gameRoom(id, position) {
+function gameRoom(id) {
     this.id = id;
     this.players = [];
-    this.playernum = this.players.length;
-    this.position = position;
 }
 var takenID = [];
 var gameRoomArray = [];
@@ -39,6 +37,7 @@ function player (id){
     this.alive = true;
     this.role = "villager";
     this.room;
+    this.admin = false;
 
 }
 
@@ -150,15 +149,14 @@ function checkID(room){
 
 function createGameRoom (sender){
     sendTextMessage(sender, "creating");
-    var roomID = "a"+(Math.floor(Math.random()*90000) + 10000);
-    let finalid = checkID(roomID);
-    let test = new gameRoom(finalid, gameRoomArray.length);
+    let finalid = gameRoomArray.length;
+    let test = new gameRoom(finalid);
     test.players.push(sender);
     gameRoomArray.push(test);
 
     let tempPlayer = new player(sender);
     tempPlayer.room = finalid;
-    tempPlayer.name = "player" + gameRoomArray[];
+    tempPlayer.name = "player" + finalid;
     
     let startMessage = { text: "You have created a game, you're room ID is: "+ finalid };
     sendTextMessage(sender, startMessage);
@@ -224,28 +222,20 @@ function sendNightOptions(sender) {
 
 function joinGameRoom(sender,text){
     //var roomIDTaken = require('data');
-    var validRoom = 0;
-    var i;
-    for (i = 0; i<gameRoomArray.length;i++){
-        if(gameRoomArray[i].id == text.substring(5,11)){
-            validRoom ++;
-            var alreadyJoined=0;
-            for (var j=0;j<gameRoomArray[i].players.length;j++){
-                if (gameRoomArray[i].players[j] == sender){
-                    alreadyJoined++;
-                }
+    if (gameRoomArray[text.substring(5,8)]){
+        var alreadyJoined=0;
+        for (var j=0;j<gameRoomArray[text.substring(5,8)].players.length;j++){
+            if (gameRoomArray[text.substring(5,8)].players[j] == sender){
+                alreadyJoined++;
             }
-            if(alreadyJoined == 0){
-                gameRoomArray[i].players.push(sender);
-            }
-            sendTextMessage(sender, gameRoomArray[i].players.length);
         }
-    }
-    if (validRoom==1){
+        if(alreadyJoined == 0){
+            gameRoomArray[text.substring(5,8)].players.push(sender);
+        }
+        sendTextMessage(sender, gameRoomArray[text.substring(5,8)].players.length);
         var joinMessage ="you have successfully joined the room: ";
         sendTextMessage(sender, joinMessage);
-    }
-    else{
+    } else{
         var joinMessage = "room ID invalid";
         sendTextMessage(sender, joinMessage);
     }
