@@ -223,46 +223,55 @@ function createGameRoom (sender){
 }
 
 function sendNightOptions(sender) {
-    let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Night Time",
-                    "subtitle": "What action do you want to do?",
-                    
-                    "buttons": [{
-                        "type": "postback",
-                        "payload": "You killed someone this turn",
-                        "title": "Kill someone",
-                        
-                    }, {
-                        "type": "postback",
-                        "payload": "You did nothing this turn",
-                        "title": "Do nothing",
-                    }],
-                }, 
+    for(j = 0; j < globalPlayer.length; j++) {
+        if(globalPlayer[j].role == "villager") {
+            
+        }
+        else if(globalPlayer[j].role == "wolf") {
+            let messageData = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [{
+                            "title": "Night Time",
+                            "subtitle": "What action do you want to do?",
+                            
+                            "buttons": [{
+                                "type": "postback",
+                                "payload": "You killed someone this turn",
+                                "title": "Kill someone",
+                                
+                            }, {
+                                "type": "postback",
+                                "payload": "You did nothing this turn",
+                                "title": "Do nothing",
+                            }],
+                        }, 
 
-                ]
+                        ]
+                    }
+                }
             }
         }
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messages',
+            qs: {access_token:token},
+            method: 'POST',
+            json: {
+                recipient: {id:sender},
+                message: messageData,
+            }
+        }, function(error, response, body) {
+            if (error) {
+                console.log('Error sending messages: ', error)
+            } else if (response.body.error) {
+                console.log('Error: ', response.body.error)
+            }
+        })
     }
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
+    
+    
 }
 
 function joinGameRoom(sender,text){
@@ -336,7 +345,7 @@ function startgame(sender, roomid){
                 if (sender == gameRoomArray[roomid].players[0]){
                     //turn(gameRoomArray[roomid].players, turn1text);
                     messageEveryone(roomid, "Admin started game for room "+ roomid + ". Game is starting, please wait while roles are assigned.");
-                    messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!");
+                    messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good luck everyone!");
 
                     generateRole(sender, roomid);
                     var j;
@@ -348,7 +357,7 @@ function startgame(sender, roomid){
                             sendTextMessage(globalPlayer[j].id, gameNightVillagerIntroText);
                         }
                     }
-                    messageEveryone(roomid, "Night time starts!!!!");
+                    messageEveryone(roomid, "Night time starts!!");
 
                     break;
 
