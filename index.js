@@ -144,6 +144,18 @@ function sendTextMessage(sender, text) {
     })
 }
 
+function messageEveryone(roomid, text) {
+    let i;
+    if(gameRoomArray[roomid]) {
+        for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
+            sendTextMessage(gameRoomArray[roomid].players[i], text);
+        }       
+    }
+    else {
+        console.log('Error in callEveryone');
+    }
+}
+
 function endGame(sender, id) {
     let i;
 <<<<<<< HEAD
@@ -318,16 +330,12 @@ arr.sort(randomsort);
 
 function playerRearrange(sender,roomid) {
     var i;
-    sendTextMessage(sender, "in playerRearrange");
     //console.log(gameRoomArray);
     if(gameRoomArray[roomid]) {
-        sendTextMessage(sender, "in if argument");
         for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
-            sendTextMessage(sender, "in for loop");
             let tempPlayer = new player(gameRoomArray[roomid].players[i]);
             tempPlayer.name = "Player" + i;
             globalPlayer.push(tempPlayer);
-            sendTextMessage(sender, globalPlayer[i].name);
         }
     }
     else {
@@ -340,15 +348,16 @@ function playerRearrange(sender,roomid) {
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
     var i;
-    if (gameRoomArray[roomid]){
-        if(gameRoomArray[roomid].id){
+    if (gameRoomArray[roomid]){ 
+        if(gameRoomArray[roomid].players){
             playerRearrange(sender, roomid);
+            //THIS iS A TEST
+            //messageEveryone(roomid, "We start!");
             for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
                 if (sender == gameRoomArray[roomid].players[0]){
                     //turn(gameRoomArray[roomid].players, turn1text);
-                    sendTextMessage(sender, "Admin started game for room "+ roomid);
-                    var j;
+                    messageEveryone(roomid, "Admin started game for room "+ roomid);
                     /*for(j=0; j<globalPlayer.length; j++){
                         sendTextMessage(sender, globalPlayer[j].id);
                     }*/
