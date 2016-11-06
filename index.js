@@ -78,12 +78,10 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
 
-            console.log("*** " + text + " ***");
-
             if(text == "creategame") {
                 createGameRoom(sender);
                 // This is a test
-                sendTextMessage(sender, gameRoomArray.length);
+                sendTextMessage(sender, "Number of Active Games: " + gameRoomArray.length);
                 continue;
             }
             if (text == "image"){
@@ -109,7 +107,7 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
-            sendTextMessage(sender, "Hi, welcome to the Werewolf Game!" + text.substring(0, 200))            
+            sendTextMessage(sender, "Hi, welcome to the Werewolf Game! " + text.substring(0, 200))            
         }
         if (event.postback) {
                 
@@ -166,7 +164,7 @@ function createGameRoom (sender){
     tempPlayer.room = finalid;
     tempPlayer.name = "player" + finalid;
     
-    let startMessage = { text: "You have created a game, you're room ID is: "+ finalid };
+    let startMessage = { text: "You have created a game, your room ID is: "+ finalid };
     sendTextMessage(sender, startMessage);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -240,8 +238,8 @@ function joinGameRoom(sender,text){
         if(alreadyJoined == 0){
             gameRoomArray[text.substring(5,8)].players.push(sender);
         }
-        sendTextMessage(sender, gameRoomArray[text.substring(5,8)].players.length);
-        var joinMessage ="you have successfully joined the room: ";
+        sendTextMessage(sender, "Number of players: " + gameRoomArray[text.substring(5,8)].players.length);
+        var joinMessage ="you have successfully joined the room: "+ text.substring(5,8);
         sendTextMessage(sender, joinMessage);
     } else{
         var joinMessage = "room ID invalid";
@@ -278,7 +276,7 @@ function playerRearrange(roomid) {
 
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
-    playerRearrange(roomid);
+    //playerRearrange(roomid);
     var i;
     if (gameRoomArray[roomid]){
         for (i=0; i < gameRoomArray[roomid].players.length; i++) {
@@ -290,11 +288,21 @@ function startgame(sender, roomid){
 
 
             } else {
+            if (sender == gameRoomArray[roomid].players[0]){
+                //turn(gameRoomArray[roomid].players, turn1text);
+                sendTextMessage(sender, "The game started for room "+ roomid);
+                var j;
+                for(j=0; j<globalPlayer.length; j++){
+                    sendTextMessage(sender, globalPlayer[j].id);
+                }
+                break;
+
+            } else if (i==gameRoomArray[roomid].players.length-1){
                 sendTextMessage(sender, "You are not the admin of the room "+ roomid);
             }
         }
     } else {
-        sendTextMessage(sender, "room is undefined again")
+        sendTextMessage(sender, "No Active GameRoom")
     }
 }
 
