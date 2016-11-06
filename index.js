@@ -366,18 +366,22 @@ function turn(players, turntext){
 function generateRole(roomid){
     
     if(gameRoomArray[roomid]) {
-        var tempPlayerArray = gameRoomArray[roomid].players;
-        var playerCount = tempPlayerArray.length;
+        var playerCount = globalPlayer.length;
         var wolfCount = Math.floor(playerCount / 3);
-        var i;
-        var j;
-        var tempRandNum = [];
-        for(i = 0; i < wolfCount; i++) {
+        var i=0;
+        while(i<=wolfCount){
+            let x = globalPlayer.randomElement();
+            if (x.role=="villager"){
+                x.role=="werewolf"
+                i++
+            }
+        }
+        /*for(i = 0; i <= wolfCount; i++) {
             var rand = Math.floor((Math.random() * playerCount) );
             if(tempRandNum.indexOf(rand) > -1) continue;
             tempRandNum.push(rand);
-        }
-        for(i = 0; i < wolfCount; i++) {
+        }*/
+        /*for(i = 0; i < wolfCount; i++) {
             let wolfUserID = tempPlayerArray[tempRandNum[i]];
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
@@ -386,7 +390,7 @@ function generateRole(roomid){
                 }
             }
         }
-        gameRoomArray[roomid].players = tempPlayerArray;
+        gameRoomArray[roomid].players = tempPlayerArray;*/
     }
     else {
         console.log('Error in generateRole');
