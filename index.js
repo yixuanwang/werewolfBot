@@ -33,6 +33,7 @@ function gameRoom(id) {
     this.victims;
     this.suspects = [];
     this.winner;
+    this.time = "night";
 }
 var takenID = [];
 var gameRoomArray = [];
