@@ -114,7 +114,7 @@ app.post('/webhook/', function (req, res) {
 
             if (text.substring(0,7) == "morning")
             {
-                playerButtons[gameRoomArray.id];
+                printPlayers(sender, globalPlayer);
             }
             sendTextMessage(sender, "Welcome to the world of Werewolf! Use 'creategame' to create a gameroom, use 'join #roomID' to join a current game and use 'help' for help. (" + text.substring(0, 200) + ") is not recognized.")            
         }
@@ -415,66 +415,74 @@ function generateRole(sender, roomid){
 
 }
 
-//displays buttons with player names for day time lynch
-function playerButtons(roomNum)
-{
-    
-    let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "Day Time",
-                    "subtitle": "Who do you want to choose to lynch?",
-
-                    "buttons": 
-                    [{
-                        "type": "postback",
-                        "payload": "You lynched no one this day",
-                        "title": "No One",
-
-                    }, 
-
-                    for (var i = 0; i<roomNum; i++)
-                    {                                              
-                            if (roomNum == event.sender.room)
-                            {
-                                for (var j=0; j < gameRoomArray[i].players.length; j++)
-                                {
-                                    "type": "postback",
-                                    "payload": "Your vote has been set",
-                                    "title": j //gameRoomArray[i].players[j],
-                                },
-                            }
-                                               
-                    }],
-                }, 
-                ]
-            }
-        }
+function printPlayers(sender, playerList){
+    sendTextMessage(sender, "Player List: ");
+    for (var i = 0; i < playerList.length; i++)
+    {
+        sendTextMessage(sender, playerList[i] + " ");
     }
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-        }, 
-        function(error, response, body) 
-        {
-        if (error) 
-        {
-            console.log('Error sending messages: ', error)
-        } 
-        else if (response.body.error) 
-        {
-            console.log('Error: ', response.body.error)
-        }
-    })
 }
+
+//displays buttons with player names for day time lynch
+// function playerButtons(roomNum)
+// {
+    
+//     let messageData = {
+//         "attachment": {
+//             "type": "template",
+//             "payload": {
+//                 "template_type": "generic",
+//                 "elements": [{
+//                     "title": "Day Time",
+//                     "subtitle": "Who do you want to choose to lynch?",
+
+//                     "buttons": 
+//                     [{
+//                         "type": "postback",
+//                         "payload": "You lynched no one this day",
+//                         "title": "No One",
+
+//                     }, 
+
+//                     for (var i = 0; i<roomNum; i++)
+//                     {                                              
+//                             if (roomNum == event.sender.room)
+//                             {
+//                                 for (var j=0; j < gameRoomArray[i].players.length; j++)
+//                                 {
+//                                     "type": "postback",
+//                                     "payload": "Your vote has been set",
+//                                     "title": j //gameRoomArray[i].players[j],
+//                                 },
+//                             }
+                                               
+//                     }],
+//                 }, 
+//                 ]
+//             }
+//         }
+//     }
+//     request({
+//         url: 'https://graph.facebook.com/v2.6/me/messages',
+//         qs: {access_token:token},
+//         method: 'POST',
+//         json: {
+//             recipient: {id:sender},
+//             message: messageData,
+//         }
+//         }, 
+//         function(error, response, body) 
+//         {
+//         if (error) 
+//         {
+//             console.log('Error sending messages: ', error)
+//         } 
+//         else if (response.body.error) 
+//         {
+//             console.log('Error: ', response.body.error)
+//         }
+//     })
+// }
 
 
 
