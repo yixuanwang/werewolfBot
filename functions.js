@@ -35,7 +35,7 @@ function createGameRoom (sender){
 
 
 function joinGameRoom(sender,text){
-	var roomIDTaken = require('data');
+	//var roomIDTaken = require('data');
 	let validRoom = false;
 	for (let i = 0; i<gameRoomArray.length;i++){
 		if(gameRoomArray[i].id == text.substring(5,11)){
@@ -50,4 +50,34 @@ function joinGameRoom(sender,text){
 		let joinMessage = { text: "room ID invalid"};
 	}
 
+}
+
+function daytime (gameid){
+	for(var i = 0; i<globalPlayer.length;i++){
+		sendTextMessage(players.id, "It is now time to vote for who to lynch, the player who are still alive are: ");
+		for (var j = 0; j<globalPlayer.length;j++){
+			if(globalPlayer[j].alive){
+				sendTextMessage(players.id, player.name);
+			}
+		}
+	}
+	var totalVotes=0;
+	while(totalVotes<gameRoomArray[gameid].players.length){
+		//collect votes
+	}
+
+
+	sendTextMessage("")
+}
+
+function nighttime (gameid){
+	for(var i = 0; i<globalPlayer.length;i++){
+		if(globalPlayer[i] == "werewolf"){
+			sendTextMessage(globalPlayer[i].id, "It is nighttime, who do you want to kill?");
+			//werewolf options
+		}
+		else{
+			sendTextMessage(globalPlayer[i].id, "It is nighttime, have so rest");
+		}
+	}
 }
