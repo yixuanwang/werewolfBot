@@ -380,7 +380,7 @@ function generateRole(sender, roomid){
             var rand = Math.floor((Math.random() * playerCount) );
             if(tempRandNum.indexOf(rand) > -1) continue;
             tempRandNum.push(rand);
-            sendTextMessage(sender, "the rand num is " + rand);
+            sendTextMessage(sender, "the rand num is " + tempRandNum[i]);
         }
         for(i = 0; i < wolfCount; i++) {
             var wolfUserID = tempPlayerArray[tempRandNum[i]];
