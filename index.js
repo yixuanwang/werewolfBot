@@ -374,7 +374,6 @@ function generateRole(sender, roomid){
         //test
         sendTextMessage(sender, "wolfCount is " + wolfCount);
         var i;
-        var j;
         var tempRandNum = [];
         for(i = 0; i < wolfCount; i++) {
             var rand = Math.floor((Math.random() * playerCount) );
@@ -385,11 +384,14 @@ function generateRole(sender, roomid){
         for(i = 0; i < wolfCount; i++) {
             var wolfUserID = tempPlayerArray[tempRandNum[i]];
             sendTextMessage(sender, "our wolfUserID is " + wolfUserID);
+            var j;
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
                     globalPlayer[j].role = "wolf";
+                    sendTextMessage(sender, "our globalPlayer " + j + " role is " + globalPlayer[j].role);
                 } else {
                     globalPlayer[j].role = "villager";
+                    sendTextMessage(sender, "our globalPlayer " + j + " role is " + globalPlayer[j].role);
                 }
             }
         }
