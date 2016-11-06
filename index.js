@@ -334,6 +334,16 @@ function startgame(sender, roomid){
                     messageEveryone(roomid, "Each night, werewolves will kill one Villager. It is up to the Villagers in the morning to vote and hang who they think are the werewolves. Good game and good luck everyone!");
 
                     generateRole(sender, roomid);
+                    var j;
+                    for(j = 0; j < globalPlayer.length; j++) {
+                        if(globalPlayer[j].role == "wolf") {
+                            sendTextMessage(globalPlayer[j].id, gameNightWolfIntroText);
+                        }
+                        else if(globalPlayer[j].role == "villager") {
+                            sendTextMessage(globalPlayer[j].id, gameNightVillagerIntroText);
+                        }
+                    }
+                    messageEveryone(roomid, "Night time starts!!!!");
 
                     break;
 
@@ -399,3 +409,20 @@ function generateRole(sender, roomid){
     }
 
 }
+
+
+
+/*********************     TEXT VAR   ****************************************/
+/***************** WOLF *****************/
+//During the night, tell the wolves their role and their teammate, only once
+var gameNightWolfIntroText = "You are a Werewolf! Each night you can choose to kill someone. If a tie occurs in the choosing, one of the selected will be randomly chosen" + "The other wolves are " + wolf.id;
+
+//During the night, ask the wolf who he wants to eat, ask everynight
+var gameNightAskWolfText = "Who do you want to eat"
+
+//when in the night, if a werewolf vote to eat someon, the other werewolf will get the message
+var gameNightWolfEatVoteText = voter.id + " has voted to eat " + victim.id
+
+/***************** Villager *****************/
+//when in the night, tell the villagers their role, only once
+var gameNightVillagerIntroText = "You are just a noraml Villager. Your goal is to survive until the end of the game by lynching the Werewolves."
