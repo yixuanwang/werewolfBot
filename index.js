@@ -387,6 +387,7 @@ function generateRole(sender, roomid){
             sendTextMessage(sender, "our wolfUserID is " + wolfUserID);
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
+                    sendTextMessage(sender, "if loop"+globalPlayer[j].id );
                     globalPlayer[j].role = "wolf";
                     break;
                 }
