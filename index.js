@@ -106,7 +106,7 @@ app.post('/webhook/', function (req, res) {
                     }
                 }
                 if(gameRoomArray[roomid] && gameRoomArray[roomid].time == "night") {
-                    uploadTarget(roomid, text.substring(4,7));
+                    uploadTarget(roomid, text.substring(4,11));
                 }
             }
 
