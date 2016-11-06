@@ -144,6 +144,18 @@ function sendTextMessage(sender, text) {
     })
 }
 
+function messageEveryone(roomid, text) {
+    let i;
+    if(gameRoomArray[roomid]) {
+        for(i = 0; i < gameRoomArray[roomid].players.length; i++) {
+            sendTextMessage(gameRoomArray[roomid].players[i], text);
+        }       
+    }
+    else {
+        console.log('Error in callEveryone');
+    }
+}
+
 function endGame(sender, id) {
     let i;
     if(gameRoomArray[id].players){
@@ -316,6 +328,7 @@ function startgame(sender, roomid){
     if (gameRoomArray[roomid]){
         if(gameRoomArray[roomid].id){
             playerRearrange(sender, roomid);
+            messageEveryone(roomid, "We start!");
             for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
                 if (sender == gameRoomArray[roomid].players[0]){
