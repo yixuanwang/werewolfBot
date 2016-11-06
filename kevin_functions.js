@@ -19,6 +19,7 @@ if (text == "end game")
 
 }
 
+//displays buttons with player names for day time lynch
 function playerButtons(roomArray)
 {
 	let messageData = {

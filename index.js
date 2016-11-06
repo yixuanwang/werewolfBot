@@ -111,6 +111,11 @@ app.post('/webhook/', function (req, res) {
                 continue;
             }
 
+
+            if (text.substring(0,7) == "morning")
+            {
+                playerButtons[gameRoomArray];
+            }
             sendTextMessage(sender, "Welcome to the world of Werewolf! Use 'creategame' to create a gameroom, use 'join #roomID' to join a current game and use 'help' for help. (" + text.substring(0, 200) + ") is not recognized.")            
         }
         if (event.postback) {
@@ -408,6 +413,64 @@ function generateRole(sender, roomid){
         console.log('Error in generateRole');
     }
 
+}
+
+//displays buttons with player names for day time lynch
+function playerButtons(roomArray)
+{
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Day Time",
+                    "subtitle": "Who do you want to choose to lynch?",
+
+                    "buttons": [{
+                        "type": "postback",
+                        "payload": "You lynched no one this day",
+                        "title": "No One",
+
+                    }, {
+                        for (var i=0; i<roomArray.length; i++)
+                        {
+                            if (i == event.sender.room)
+                            {
+                                for (var j=0; j < roomArray[i].players.length; j++)
+                                {
+                                    "type": "postback",
+                                    "payload": "Your vote has been set",
+                                    "title": roomArray[i].players[j],
+                                }
+                            }
+                        }                        
+                    }],
+                }, 
+                ]
+            }
+        }
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+        }, 
+        function(error, response, body) 
+        {
+        if (error) 
+        {
+            console.log('Error sending messages: ', error)
+        } 
+        else if (response.body.error) 
+        {
+            console.log('Error: ', response.body.error)
+        }
+    })
 }
 
 
