@@ -158,17 +158,6 @@ function messageEveryone(roomid, text) {
 
 function endGame(sender, id) {
     let i;
-
-    for(i=0; i<globalPlayer.length; i++){
-        sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
-
-    if (sender == globalPlayer[0].id){
-        for(i=0; i<globalPlayer.length; i++){
-            sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
-        }
-    }else{
-        sendTextMessage(sender, "You are not the admin of the room "+ roomid);
-
     if(gameRoomArray[id].players){
         if (sender == gameRoomArray[id].players[0]){
             for(i=0; i<globalPlayer.length; i++){
@@ -179,18 +168,6 @@ function endGame(sender, id) {
         }
     } else {
         sendTextMessage(sender, "Invalid Error")
-
-    if(gameRoomArray[id].players){
-        if (sender == gameRoomArray[id].players[0]){
-            for(i=0; i<globalPlayer.length; i++){
-                sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
-            }
-        }else{
-            sendTextMessage(sender, "You are not the admin of the room "+ roomid);
-        }
-    } else {
-        sendTextMessage(sender, "Invalid Error")
-
     }
     delete gameRoomArray[id].id;
     delete gameRoomArray[id].players;
