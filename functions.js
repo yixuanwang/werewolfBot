@@ -111,3 +111,24 @@ function checkEnd (gameid){
 	}
 
 }
+
+function getPlayer(sender){
+	for (var i = 0; i<globalPlayer.length;i++){
+		if(globalPlayer[i].id == sender){
+			return i;
+			break;
+		}
+	}
+}
+
+if(gameRoomArray[globalPlayer[i]].time == "day" && globalPlayer[i].alive && votesCurrent<totalVotes && text.substring(0,5) == "lynch "){
+
+}
+
+function getVote(player, text){
+	for (var i = 0; i<globalPlayer.length; i++){
+		if(text.substring(5,20) == globalPlayer[i].name){
+			
+		}
+	}
+}
