@@ -441,7 +441,7 @@ function playerButtons(roomArray)
                                 {
                                     "type": "postback",
                                     "payload": "Your vote has been set",
-                                    "title": roomArray[i].players[j],
+                                    "title": "roomArray[i].players[j]",
                                 }
                             }
                         }                        
@@ -488,4 +488,4 @@ var gameNightAskWolfText = "Who do you want to eat"
 
 /***************** Villager *****************/
 //when in the night, tell the villagers their role, only once
-var gameNightVillagerIntroText = "You are just a noraml Villager. Your goal is to survive until the end of the game by lynching the Werewolves."
+var gameNightVillagerIntroText = "You are just a normal Villager. Your goal is to survive until the end of the game by lynching the Werewolves."
