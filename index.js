@@ -309,40 +309,22 @@ function startgame(sender, roomid){
     if (gameRoomArray[roomid]){
         for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
-            sendTextMessage(sender, "You are in the loop");
-
-            if (sender == gameRoomArray[roomid].players[0]){
-                //turn(gameRoomArray[roomid].players, turn1text);
-                sendTextMessage(sender, "The game started for room "+ roomid);
-
-
-            } else {
-
-
             if (sender == gameRoomArray[roomid].players[0]){
                 //turn(gameRoomArray[roomid].players, turn1text);
                 sendTextMessage(sender, "The game started for room "+ roomid);
                 var j;
-                for(j=0; j<globalPlayer.length; j++){
+                /*for(j=0; j<globalPlayer.length; j++){
                     sendTextMessage(sender, globalPlayer[j].id);
-                }
+                }*/
                 break;
 
             } else if (i==gameRoomArray[roomid].players.length-1){
-
-dfff7bc56ef60161b2e15b717bdf6dcef5e6e987
- f3fcd06a9cf5ae4fecbf61cf7b47e20304aef718
                 sendTextMessage(sender, "You are not the admin of the room "+ roomid);
             }
         }
     } else {
 
         sendTextMessage(sender, "No Active GameRoom")
-
-        sendTextMessage(sender, "room is undefined again")
-
-        sendTextMessage(sender, "No Active GameRoom")
-
     }
 }
 
