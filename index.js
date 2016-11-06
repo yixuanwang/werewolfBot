@@ -158,30 +158,17 @@ function messageEveryone(roomid, text) {
 
 function endGame(sender, id) {
     let i;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    for(i=0; i<globalPlayer.length; i++){
-        sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
-    }
-    delete gameRoomArray[id].id;
-    delete gameRoomArray[id].players;
-    globalPlayer = [];
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
     for(i=0; i<globalPlayer.length; i++){
         sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
-=======
+
     if (sender == globalPlayer[0].id){
         for(i=0; i<globalPlayer.length; i++){
             sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
         }
     }else{
         sendTextMessage(sender, "You are not the admin of the room "+ roomid);
->>>>>>> d53973354caf5e8d77edb3cb0c0f4a8a9512a136
->>>>>>> ab2c5d668d51fd8d53a7b590302c9536898981f7
-=======
+
     if(gameRoomArray[id].players){
         if (sender == gameRoomArray[id].players[0]){
             for(i=0; i<globalPlayer.length; i++){
@@ -192,8 +179,7 @@ function endGame(sender, id) {
         }
     } else {
         sendTextMessage(sender, "Invalid Error")
->>>>>>> 7fcf3b16f6f3d0402d013d007cfeebf3c0656f6d
-=======
+
     if(gameRoomArray[id].players){
         if (sender == gameRoomArray[id].players[0]){
             for(i=0; i<globalPlayer.length; i++){
@@ -204,14 +190,10 @@ function endGame(sender, id) {
         }
     } else {
         sendTextMessage(sender, "Invalid Error")
->>>>>>> 0cdec22b77877a85ba3f85dd4f31b66c429480cf
+
     }
     delete gameRoomArray[id].id;
     delete gameRoomArray[id].players;
-<<<<<<< HEAD
->>>>>>> 7fcf3b16f6f3d0402d013d007cfeebf3c0656f6d
-=======
->>>>>>> ab2c5d668d51fd8d53a7b590302c9536898981f7
 }
 
 function checkID(room){
@@ -405,4 +387,3 @@ function generateRole(myArray){
         
     };
 }
-
