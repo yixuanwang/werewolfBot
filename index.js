@@ -27,6 +27,8 @@ const events = require('events');
 function gameRoom(id) {
     this.id = id;
     this.players = [];
+    this.wolves = [];
+    this.villagers = [];
 }
 var takenID = [];
 var gameRoomArray = [];
@@ -407,10 +409,11 @@ function generateRole(sender, roomid){
             for(j = 0; j < globalPlayer.length; j++) {
                 if(globalPlayer[j].id == wolfUserID) {
                     globalPlayer[j].role = "wolf";
+                    gameRoomArray[roomid].wolves.push(globalPlayer[j].id);
                     
                 } else {
                     globalPlayer[j].role = "villager";
-                    
+                    gameRoomArray[roomid].villagers.push(globalPlayer[j].id);
                 }
             }
         }
