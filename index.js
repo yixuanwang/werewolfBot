@@ -146,17 +146,19 @@ function sendTextMessage(sender, text) {
 
 function endGame(sender, id) {
     let i;
-    if (sender == globalPlayer[0].id){
-        for(i=0; i<globalPlayer.length; i++){
-            sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
+    if(gameRoomArray[id].players){
+        if (sender == gameRoomArray[id].players[0]){
+            for(i=0; i<globalPlayer.length; i++){
+                sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
+            }
+        }else{
+            sendTextMessage(sender, "You are not the admin of the room "+ roomid);
         }
-    }else{
-        sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+    } else {
+        sendTextMessage(sender, "Invalid Error")
     }
     delete gameRoomArray[id].id;
     delete gameRoomArray[id].players;
-    globalPlayer = [];
-
 }
 
 function checkID(room){
@@ -310,23 +312,28 @@ function playerRearrange(sender,roomid) {
 
 // if admin == sender, then the game starts
 function startgame(sender, roomid){
-    playerRearrange(sender, roomid);
     var i;
     if (gameRoomArray[roomid]){
-        for (i=0; i < gameRoomArray[roomid].players.length; i++) {
+        if(gameRoomArray[roomid].id){
+            playerRearrange(sender, roomid);
+            for (i=0; i < gameRoomArray[roomid].players.length; i++) {
 
-            if (sender == gameRoomArray[roomid].players[0]){
-                //turn(gameRoomArray[roomid].players, turn1text);
-                sendTextMessage(sender, "Admin started game for room "+ roomid);
-                var j;
-                /*for(j=0; j<globalPlayer.length; j++){
-                    sendTextMessage(sender, globalPlayer[j].id);
-                }*/
-                break;
+                if (sender == gameRoomArray[roomid].players[0]){
+                    //turn(gameRoomArray[roomid].players, turn1text);
+                    sendTextMessage(sender, "Admin started game for room "+ roomid);
+                    var j;
+                    /*for(j=0; j<globalPlayer.length; j++){
+                        sendTextMessage(sender, globalPlayer[j].id);
+                    }*/
+                    break;
 
-            } else if (i==gameRoomArray[roomid].players.length-1){
-                sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+                } else if (i==gameRoomArray[roomid].players.length-1){
+                    sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+                }
             }
+        } else {
+            sendTextMessage(sender, "No Active GameRoom")
+
         }
     } else {
 
