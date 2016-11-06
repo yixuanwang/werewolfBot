@@ -177,7 +177,7 @@ function endGame(sender, id) {
                 sendTextMessage(globalPlayer[i].id,"Sorry! The admin has ended the game prematurely. The room "+id+" is deleted.");
             }
         }else{
-            sendTextMessage(sender, "You are not the admin of the room "+ roomid);
+            sendTextMessage(sender, "You are not the admin of the room "+ id);
         }
     } else {
         sendTextMessage(sender, "Invalid Error")
