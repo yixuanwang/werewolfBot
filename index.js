@@ -99,6 +99,7 @@ app.post('/webhook/', function (req, res) {
             if (text.substring(0,4) == "eat ") {
                 let j;
                 var roomid;
+                sendTextMessage(sender, text.substring(4,11));
                 for(j = 0; j < globalPlayer.length; j++) {
                     if(sender == globalPlayer[j].id) {
                         roomid = globalPlayer[j].room;
@@ -106,7 +107,7 @@ app.post('/webhook/', function (req, res) {
                     }
                 }
                 if(gameRoomArray[roomid] && gameRoomArray[roomid].time == "night") {
-                    uploadTarget(roomid, text.substring(4,7));
+                    uploadTarget(roomid, text.substring(4,11));
                 }
             }
 
